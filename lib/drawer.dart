@@ -18,7 +18,7 @@ class AppDrawer extends StatelessWidget {
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => const MyHomePage(title: 'counter_7')),
+                    builder: (context) => const MyHomePage(title: 'Foody Homepage')),
               );
             },
           ),

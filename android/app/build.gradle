@@ -52,7 +52,14 @@ android {
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
-
+    signingConfigs {
+         release {
+                 storeFile file("../../release-keystore.jks")
+                 storePassword = "$System.env.KEY_PASSWORD"
+                 keyAlias = "release"
+                 keyPassword = "$System.env.KEY_PASSWORD"
+         }
+     }
     buildTypes {
         release {
             // TODO: Add your own signing config for the release build.

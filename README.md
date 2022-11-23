@@ -40,7 +40,8 @@ FooodyBuddy hadir sebagai solusi untuk memfasilitasi masyarakat dalam menyalurka
 
 ## Integrasi dengan Situs Web 🌐
 * Mengimplementasikan Desain User Interface (UI) yang sama dengan website yang telah dibuat
-* Menggunakan library HTTP
+* Menggunakan library HTTP untuk mendapatkan data dari endpoint Django yang telah ada sebelumnya
+* Mengimplementasikan asynchronous HTTP untuk pengintegrasian front-end dan back-end
 
 
 ## Role Pengguna Aplikasi 🙋‍♀️🙋‍♂️

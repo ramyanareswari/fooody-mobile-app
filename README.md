@@ -1,27 +1,28 @@
 
 # Foody Buddy 🗑️🚮
+[![Staging](https://github.com/ramyanareswari/fooody-mobile-app/actions/workflows/staging.yml/badge.svg)](https://github.com/ramyanareswari/fooody-mobile-app/actions/workflows/staging.yml)
 [![Pre-Release](https://github.com/ramyanareswari/fooody-mobile-app/actions/workflows/pre-release.yml/badge.svg)](https://github.com/ramyanareswari/fooody-mobile-app/actions/workflows/pre-release.yml)
 [![Release](https://github.com/ramyanareswari/fooody-mobile-app/actions/workflows/release.yml/badge.svg)](https://github.com/ramyanareswari/fooody-mobile-app/actions/workflows/release.yml)
 
-## Apk Link 🔗
+## Tautan Apk 🔗
 Access our app [here!]()
 
 ## Members 👨‍💻
 __PBP-A Odd Semester 2022/2023__<br/>
-* Ivan Rabbani Cezeliano (2106701892)<br/>
-* Vladi Jingga Mentari (2106635631)<br/>
-* Qaniah Zahirah (2106639491)<br/>
-* Shamira Alifanindya Prasetya (2106636376)<br/>
-* Nikolas Reva Bellie (2106750212)<br/>
-* Fauzil Ula Fachrudin (2106702680)<br/>
-* Ramya Nareswari Wikantiyoso (2106751606)<br/>
+* Ivan Rabbani Cezeliano (2106701892) - Expiry Tracker<br/>
+* Vladi Jingga Mentari (2106635631) - Foody Diary<br/>
+* Qaniah Zahirah (2106639491) - Auth dan Homepage<br/>
+* Shamira Alifanindya Prasetya (2106636376) - Quiz<br/>
+* Nikolas Reva Bellie (2106750212) - Send Foodwaste<br/>
+* Fauzil Ula Fachrudin (2106702680) - Foodwaste Organization Info<br/>
+* Ramya Nareswari Wikantiyoso (2106751606) - Article<br/>
 
 ## Latar Belakang dan Manfaat Aplikasi ✨
 Makanan adalah hal esensial bagi manusia karena berperan sebagai sumber energi agar manusia dapat bertahan hidup. Sayangnya, makanan yang sudah ataupun belum dikonsumsi sering kali berakhir menjadi limbah dan terbuang begitu saja. Permasalahan serius dapat terjadi akibat limbah makanan yang tidak terolah dengan baik, salah satunya menimbulkan kerugian bagi lingkungan.<br/>
 
 FooodyBuddy hadir sebagai solusi untuk memfasilitasi masyarakat dalam menyalurkan limbah makanan yang diproduksi. Tak hanya itu, kami juga menginisiasi langkah preventif dengan membuat fitur tracker kedaluwarsa makanan. Melalui digitalisasi, kami berharap aplikasi ini dapat meningkatkan kesadaran masyarakat terkait pentingnya pengelolaan food waste.<br/>
 
-## App Modules 📝
+## Modul Aplikasi 📝
 1. <b>Homepage</b><br/>
     Berisi FAQ terkait aplikasi, contact form, dan gambaran aplikasi.
 2. <b>Foody Tips (artikel)</b><br/>
@@ -37,6 +38,9 @@ FooodyBuddy hadir sebagai solusi untuk memfasilitasi masyarakat dalam menyalurka
 7. <b>Send Organic Food Waste</b><br/>
     Pada page ini, user dapat menyalurkan makanan sisa yang layak makan; seperti buah yang sebentar lagi busuk, roti yang hampir kadaluarsa, dsb kepada organisasi-organisasi terkait. 
 
+## Integrasi dengan Situs Web 🌐
+* Mengimplementasikan Desain User Interface (UI) yang sama dengan website yang telah dibuat
+* Menggunakan library HTTP
 
 
 ## Role Pengguna Aplikasi 🙋‍♀️🙋‍♂️

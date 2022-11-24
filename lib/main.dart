@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fooody/drawer.dart';
+import 'package:fooody/widgets/drawer.dart';
 
 void main() {
   runApp(const MyApp());

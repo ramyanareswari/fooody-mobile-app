@@ -32,10 +32,26 @@ dependencies:
   flutter:
     sdk: flutter
 
+  # Modules (path dependencies)
+  diary:
+    path: diary
+  expiry:
+    path: expiry
+  miniquiz:
+    path: miniquiz
+  organization:
+    path: organization
+  send_foodwaste:
+    path: send_foodwaste
+  tips:
+    path: tips
+
+
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
+  http: ^0.13.5
 
 dev_dependencies:
   flutter_test:
@@ -89,3 +105,9 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+  fonts:
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/Poppins-Regular.ttf
+        - asset: assets/fonts/Poppins-Bold.ttf
+          weight: 700

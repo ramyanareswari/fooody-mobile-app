@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fooody/main.dart';
+import 'package:diary/screens/diary_home_page.dart';
 
 
 class AppDrawer extends StatelessWidget {
@@ -45,6 +46,11 @@ class AppDrawer extends StatelessWidget {
             title: const Text('Foody Diary'),
             onTap: () {
               // Route menu ke halaman data budget
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const DiaryHomePage()),
+              );
             },
           ),
           ListTile(

@@ -7,16 +7,28 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
+  static Map<int, Color> colorTheme = {
+    // 0xFF9966
+    50: const Color.fromRGBO(254,161,80, .8),
+    100: const Color.fromRGBO(254,161,80, .8),
+    200: const Color.fromRGBO(254,161,80, .8),
+    300: const Color.fromRGBO(254,161,80, .8),
+    400: const Color.fromRGBO(254,161,80, .8),
+    500: const Color.fromRGBO(254,161,80, .8),
+    600: const Color.fromRGBO(254,161,80, .8),
+    700: const Color.fromRGBO(254,161,80, .8),
+    800: const Color.fromRGBO(254,161,80, .9),
+    900: Color.fromARGB(255, 253, 172, 102),
+  };
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'fooody',
       theme: ThemeData(
         
-        primarySwatch: Colors.blue,
+        primarySwatch: MaterialColor(0xFFFEA150, colorTheme)
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Home Page'),
     );
   }
 }

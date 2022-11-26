@@ -1,5 +1,7 @@
 name: send_foodwaste
 description: A new Flutter package project.
+publish_to: 'none'
+
 version: 0.0.1
 homepage:
 
@@ -10,6 +12,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  fooody:
+    path: ../.
 
 dev_dependencies:
   flutter_test:

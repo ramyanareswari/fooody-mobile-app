@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:fooody/main.dart';
+
+// ========== features homepage ==========
+import 'package:fooody/screens/homepage.dart';
 import 'package:diary/screens/diary_home_page.dart';
+import 'package:expiry/screens/expiry_home_page.dart';
+import 'package:miniquiz/screens/quiz_home_page.dart';
+import 'package:organization/screens/org_home_page.dart';
+import 'package:send_foodwaste/screens/send_foodwaste.dart';
+import 'package:tips/screens/tips_home_page.dart';
 
 
 class AppDrawer extends StatelessWidget {
@@ -19,7 +26,7 @@ class AppDrawer extends StatelessWidget {
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => const MyHomePage(title: 'Foody Homepage')),
+                    builder: (context) => const HomePage()),
               );
             },
           ),
@@ -27,6 +34,11 @@ class AppDrawer extends StatelessWidget {
             title: const Text('Artikel'),
             onTap: () {
               // Route menu ke halaman tambah budget
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const TipsHomePage()),
+              );
               
             },
           ),
@@ -34,12 +46,22 @@ class AppDrawer extends StatelessWidget {
             title: const Text('Quiz'),
             onTap: () {
               // Route menu ke halaman data budget
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const QuizHomePage()),
+              );
             },
           ),
           ListTile(
             title: const Text('Expiry Tracker'),
             onTap: () {
               // Route menu ke halaman data budget
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const ExpiryHomePage()),
+              );
             },
           ),
           ListTile(
@@ -57,12 +79,22 @@ class AppDrawer extends StatelessWidget {
             title: const Text('Org Info'),
             onTap: () {
               // Route menu ke halaman data budget
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const OrganizationHomePage()),
+              );
             },
           ),
           ListTile(
             title: const Text('Send Foodwaste'),
             onTap: () {
               // Route menu ke halaman data budget
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const SendFoodHomePage()),
+              );
             },
           ),
         ],

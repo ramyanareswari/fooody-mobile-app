@@ -1,4 +1,7 @@
+// ignore_for_file: camel_case_types
+
 import 'package:flutter/material.dart';
+import 'package:fooody/widgets/drawer.dart';
 
 
 class DiaryHomePage extends StatefulWidget {
@@ -13,6 +16,7 @@ class DiaryHomePage extends StatefulWidget {
 class _Diary_HomePageState extends State<DiaryHomePage> {
   int _counter = 0;
 
+  // ignore: unused_element
   void _incrementCounter() {
     setState(() {
     
@@ -26,8 +30,9 @@ class _Diary_HomePageState extends State<DiaryHomePage> {
     return Scaffold(
       appBar: AppBar(
       
-        title: Text("Diary Home Page"),
+        title: const Text("Diary Home Page"),
       ),
+      drawer: const AppDrawer(),
       body: Center(
         
         child: Column(
@@ -45,7 +50,7 @@ class _Diary_HomePageState extends State<DiaryHomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: const Color(0xFF0B36A8),
+        backgroundColor: const Color(0xFFFEA150),
         onPressed: () {
         },
         tooltip: 'Tambahkan Kutipan Penyemangat',

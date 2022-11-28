@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 
+import 'package:fooody/screens/homepage.dart';
 import 'package:fooody/screens/login.dart';
 
 void main() {
@@ -35,10 +36,17 @@ class MyApp extends StatelessWidget {
         return request;
       },
       child: MaterialApp(
-        title: 'fooody',
-        theme: ThemeData(primarySwatch: MaterialColor(0xFFFEA150, colorTheme)),
-        home: LoginScreen()
-      ),
+          title: 'fooody',
+          theme:
+              ThemeData(primarySwatch: MaterialColor(0xFFFEA150, colorTheme)),
+          home: LoginScreen(),
+          onGenerateRoute: (RouteSettings settings) {
+            switch (settings.name) {
+              case HomePage.routeName:
+                return MaterialPageRoute(builder: (_) => const HomePage());
+            }
+            return null;
+          }),
     );
   }
 }

@@ -3,7 +3,7 @@
 [![Staging](https://github.com/ramyanareswari/fooody-mobile-app/actions/workflows/staging.yml/badge.svg)](https://github.com/ramyanareswari/fooody-mobile-app/actions/workflows/staging.yml)
 [![Pre-Release](https://github.com/ramyanareswari/fooody-mobile-app/actions/workflows/pre-release.yml/badge.svg)](https://github.com/ramyanareswari/fooody-mobile-app/actions/workflows/pre-release.yml)
 [![Release](https://github.com/ramyanareswari/fooody-mobile-app/actions/workflows/release.yml/badge.svg)](https://github.com/ramyanareswari/fooody-mobile-app/actions/workflows/release.yml)
-[![AppCenter Build Status](https://build.appcenter.ms/v0.1/apps/c1c2d3f3-a0b4-4138-aa3f-f39203c8d91e/branches/main/badge)](https://appcenter.ms))
+[![AppCenter Build Status](https://build.appcenter.ms/v0.1/apps/c1c2d3f3-a0b4-4138-aa3f-f39203c8d91e/branches/main/badge)](https://appcenter.ms)
 
 ## Tautan Apk 🔗
 Access our app [here!]()

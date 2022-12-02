@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
           title: 'fooody',
           theme:
               ThemeData(primarySwatch: MaterialColor(0xFFFEA150, colorTheme)),
-          home: LoginScreen(),
+          home: HomePage(),
           onGenerateRoute: (RouteSettings settings) {
             switch (settings.name) {
               case HomePage.routeName:

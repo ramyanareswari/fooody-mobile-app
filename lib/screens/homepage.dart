@@ -29,7 +29,7 @@ class HomePage extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
                 child: Text(
-                  'Apa yang ingin kamu lakukan hari ini?',
+                  'FAQ',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 30,

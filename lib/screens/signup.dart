@@ -36,7 +36,7 @@ class _SignUpState extends State<SignUp> {
       child: Stack(
         children: [
           Scaffold(
-            backgroundColor: Colors.transparent,
+            backgroundColor: Colors.orange,
             body: SingleChildScrollView(
               child: Column(
                 children: [

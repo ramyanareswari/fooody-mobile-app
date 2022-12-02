@@ -5,7 +5,7 @@ import 'package:fooody/screens/signup.dart';
 import 'package:fooody/screens/homepage.dart';
 import 'package:flutter/material.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
-
+import 'package:fooody/widgets/drawer.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -37,7 +37,7 @@ class _LoginScreenState extends State<LoginScreen> {
           children: [
             
             Scaffold(
-              backgroundColor: Colors.transparent,
+              backgroundColor: Colors.orange,
               body: Column(
                 children: [
                   const Flexible(

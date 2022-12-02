@@ -27,7 +27,7 @@ FooodyBuddy hadir sebagai solusi untuk memfasilitasi masyarakat dalam menyalurka
 
 ## Modul Aplikasi 📝
 1. <b>Homepage</b><br/>
-    Berisi gambaran aplikas, FAQ terkait aplikasi, dan _contact form_.
+    Berisi gambaran aplikasi dan FAQ terkait aplikasi.
 2. <b>Foody Tips (artikel)</b><br/>
     Berisi artikel-artikel seputar sisa makanan (_food waste_), seperti tips pengelolaan makanan sisa sehari-hari, tips penyimpanan makanan yang baik, dsb.
 3. <b>Food Waste Awareness Mini Quiz</b><br/>

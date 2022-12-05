@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:fooody/widgets/drawer.dart';
 import 'package:expiry/models/food_data.dart';
 import 'package:expiry/screens/expiry_home_page.dart';
+import 'package:provider/provider.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
 
 class ExpiryAddPage extends StatefulWidget {
   const ExpiryAddPage({Key? key}) : super(key: key);
@@ -19,6 +21,8 @@ class _Expiry_AddPage extends State<ExpiryAddPage> {
 
   @override
   Widget build(BuildContext context) {
+    // Request, just like in Django.
+    final request = context.watch<CookieRequest>();
     return Scaffold(
       appBar: AppBar(
         title: const Text("Expiry Add Page"),
@@ -102,8 +106,14 @@ class _Expiry_AddPage extends State<ExpiryAddPage> {
                           onPressed: () {
                             if (_formKey.currentState!.validate() &&
                                 food_expired_date != null) {
-                              // TODO: Send FoodList's JSON to Web
-                              // ...
+                              // Request.POST
+                              // Main function check : POST work?
+                              request.post(
+                                  "https://fooodybuddy.up.railway.app/expiry/add-food/",
+                                  {
+                                    "food_name": food_name,
+                                    "food_expired_date": food_expired_date,
+                                  });
 
                               setState(() {
                                 food_name = "";

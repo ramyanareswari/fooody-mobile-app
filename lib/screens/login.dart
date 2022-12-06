@@ -6,7 +6,6 @@ import 'package:fooody/screens/homepage.dart';
 import 'package:flutter/material.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 
-
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
   static const ROUTE_NAME = '/login';
@@ -35,7 +34,6 @@ class _LoginScreenState extends State<LoginScreen> {
         key: _formKey,
         child: Stack(
           children: [
-            
             Scaffold(
               backgroundColor: Colors.transparent,
               body: Column(
@@ -146,12 +144,10 @@ class _LoginScreenState extends State<LoginScreen> {
                                   .showSnackBar(const SnackBar(
                                 content: Text("Successfully logged in!"),
                               ));
-
                             } else {
                               ScaffoldMessenger.of(context)
                                   .showSnackBar(const SnackBar(
-                                content:
-                                    Text("Tidak berhasil login :("),
+                                content: Text("Tidak berhasil login :("),
                               ));
                             }
                           },
@@ -172,10 +168,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      Navigator.pushReplacementNamed(
-                        context, SignUp.routeName);
-                    }
-,
+                      Navigator.pushReplacementNamed(context, SignUp.routeName);
+                    },
                     child: Container(
                       decoration: const BoxDecoration(
                           border: Border(

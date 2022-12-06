@@ -2,10 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:fooody/widgets/drawer.dart';
-import 'package:expiry/models/food_data.dart';
-import 'package:expiry/screens/expiry_home_page.dart';
+import 'dart:convert' as convert;
 import 'package:provider/provider.dart';
-import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:fooody/common/cookie_request.dart';
 
 class ExpiryAddPage extends StatefulWidget {
   const ExpiryAddPage({Key? key}) : super(key: key);
@@ -37,13 +36,11 @@ class _Expiry_AddPage extends State<ExpiryAddPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  // Menggunakan padding sebesar 8 pixels
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
                     decoration: InputDecoration(
                       hintText: "Example: Mi Yamin Fasilkom",
                       labelText: "Food Name",
-                      // Menambahkan circular border agar lebih rapi
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(5.0),
                       ),
@@ -73,9 +70,9 @@ class _Expiry_AddPage extends State<ExpiryAddPage> {
                   // Menggunakan padding sebesar 8 pixels
                   padding: const EdgeInsets.all(8.0),
                   child: TextButton(
+                    // Appearing food_expired_date?
                     child: Text("Food Expired Date"),
                     onPressed: () {
-                      // TODO: Need validator
                       showDatePicker(
                         context: context,
                         initialDate: DateTime.now(),
@@ -103,24 +100,28 @@ class _Expiry_AddPage extends State<ExpiryAddPage> {
                             backgroundColor: MaterialStateProperty.all(
                                 const Color(0xFFFEA150)),
                           ),
-                          onPressed: () {
+                          onPressed: () async {
                             if (_formKey.currentState!.validate() &&
                                 food_expired_date != null) {
-                              // Request.POST
                               // Main function check : POST work?
-                              request.post(
+                              final response = await request.post(
                                   "https://fooodybuddy.up.railway.app/expiry/add-food/",
                                   {
                                     "food_name": food_name,
-                                    "food_expired_date": food_expired_date,
+                                    "food_expired_date":
+                                        food_expired_date.toString(),
                                   });
 
-                              setState(() {
-                                food_name = "";
-                                food_expired_date = null;
-                              });
-
-                              Navigator.pop(context);
+                              // Alternative : post using http
+                              if (response.status == 200) {
+                                // Hopefully works, status based on Django code (?)
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(const SnackBar(
+                                  content:
+                                      Text("Food tracker creation is success!"),
+                                ));
+                                Navigator.pop(context);
+                              }
                             }
                           },
                         ),

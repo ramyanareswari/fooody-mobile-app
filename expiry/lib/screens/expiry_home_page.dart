@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:fooody/widgets/drawer.dart';
 import 'package:expiry/models/food_data.dart';
 import 'package:expiry/screens/expiry_add.dart';
-import 'dart:convert';
+import 'dart:convert' as convert;
 import 'package:fooody/screens/login.dart';
 import 'package:provider/provider.dart';
-import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:fooody/common/cookie_request.dart';
 
 class ExpiryHomePage extends StatefulWidget {
   const ExpiryHomePage({Key? key}) : super(key: key);
@@ -22,15 +22,13 @@ class _Expiry_HomePageState extends State<ExpiryHomePage> {
   DateTime? food_expired_date;
 
   // Main function check : GET/Fetch work?
+  // Alternative : fetch using http
   Future<List<FoodData>> fetchFoodData(CookieRequest request) async {
     var response =
         await request.get("https://fooodybuddy.up.railway.app/expiry/json/");
 
-    // melakukan decode response menjadi bentuk json
-    var data = jsonDecode(utf8.decode(response.bodyBytes));
-
     List<FoodData> listFoodData = [];
-    for (var d in data) {
+    for (var d in response) {
       if (d != null) {
         listFoodData.add(FoodData.fromJson(d));
       }
@@ -143,6 +141,7 @@ class _Expiry_HomePageState extends State<ExpiryHomePage> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             textDirection: TextDirection.rtl,
             children: [
+              // Floating Action Button only appear when the user is logged in
               if (request.loggedIn) ...[
                 FloatingActionButton(
                   backgroundColor: const Color(0xFFFEA150),

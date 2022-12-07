@@ -1,4 +1,4 @@
-// ignore_for_file: camel_case_types
+// ignore_for_file: camel_case_types, depend_on_referenced_packages, non_constant_identifier_names, unused_import, sort_child_properties_last, unused_field
 
 import 'package:flutter/material.dart';
 import 'package:fooody/widgets/drawer.dart';
@@ -76,7 +76,7 @@ class _Expiry_HomePageState extends State<ExpiryHomePage> {
                                     borderRadius: BorderRadius.circular(15.0),
                                     boxShadow: const [
                                       BoxShadow(
-                                          color: const Color(0xFFFEA150),
+                                          color: Color(0xFFFEA150),
                                           blurRadius: 2.0)
                                     ]),
                                 child: Card(
@@ -92,7 +92,7 @@ class _Expiry_HomePageState extends State<ExpiryHomePage> {
                                           child: Text(
                                             snapshot
                                                 .data![index].fields.food_name,
-                                            style: TextStyle(fontSize: 30),
+                                            style: const TextStyle(fontSize: 30),
                                           ),
                                         ),
                                       ),
@@ -104,7 +104,7 @@ class _Expiry_HomePageState extends State<ExpiryHomePage> {
                                           child: Text(
                                             snapshot.data![index].fields
                                                 .food_expired_date,
-                                            style: TextStyle(fontSize: 15),
+                                            style: const TextStyle(fontSize: 15),
                                           ),
                                         ),
                                       ),
@@ -165,7 +165,7 @@ class _Expiry_HomePageState extends State<ExpiryHomePage> {
                           children: [
                             Center(
                               child: Column(
-                                children: [
+                                children: const [
                                   Text(
                                     "General Guidance",
                                     style: TextStyle(

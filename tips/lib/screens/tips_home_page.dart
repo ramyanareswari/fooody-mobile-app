@@ -25,7 +25,7 @@ class _Tips_HomePageState extends State<TipsHomePage> {
   }
 
   getArticleData() {
-    debugPrint("Halooo");
+    //debugPrint("Halooo");
     setLoading(true);
     setState(() {
       list.clear();
@@ -96,7 +96,7 @@ class _Tips_HomePageState extends State<TipsHomePage> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: const Color(0xFFFEA150),
         onPressed: () {
-          
+
         },
         tooltip: 'Tambahkan Artikel!',
         child: const Icon(Icons.add),

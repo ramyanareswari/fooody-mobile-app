@@ -1,4 +1,6 @@
 
+// ignore_for_file: non_constant_identifier_names
+
 import 'dart:convert';
 
 
@@ -15,8 +17,6 @@ class MyArticle {
 
   int pk;
   Fields fields;
-
-  // TODO: author pk nya belum
 
 
   factory MyArticle.fromJson(Map<String, dynamic> json) => MyArticle(
@@ -36,12 +36,11 @@ class Fields {
     required this.content,
     required this.publish,
     required this.image,
-    //TODO URL IMAGE
   });
 
   
   String title;
-  double content;
+  String content;
   DateTime publish;
   String image;
 

@@ -1,4 +1,4 @@
-// ignore_for_file: camel_case_types
+// ignore_for_file: camel_case_types, unused_import, non_constant_identifier_names, depend_on_referenced_packages, use_build_context_synchronously
 
 import 'package:flutter/material.dart';
 import 'package:fooody/widgets/drawer.dart';
@@ -71,7 +71,7 @@ class _Expiry_AddPage extends State<ExpiryAddPage> {
                   padding: const EdgeInsets.all(8.0),
                   child: TextButton(
                     // Appearing food_expired_date?
-                    child: Text("Food Expired Date"),
+                    child: const Text("Food Expired Date"),
                     onPressed: () {
                       showDatePicker(
                         context: context,
@@ -89,13 +89,9 @@ class _Expiry_AddPage extends State<ExpiryAddPage> {
                 Center(
                   child: Column(
                     children: [
-                      Container(
+                      SizedBox(
                         width: 125,
                         child: TextButton(
-                          child: const Text(
-                            "Submit",
-                            style: TextStyle(color: Colors.white),
-                          ),
                           style: ButtonStyle(
                             backgroundColor: MaterialStateProperty.all(
                                 const Color(0xFFFEA150)),
@@ -124,19 +120,19 @@ class _Expiry_AddPage extends State<ExpiryAddPage> {
                               }
                             }
                           },
-                        ),
-                      ),
-                      Container(
-                        width: 100,
-                        child: const Text(""),
-                      ),
-                      Container(
-                        width: 125,
-                        child: TextButton(
                           child: const Text(
-                            "Back",
+                            "Submit",
                             style: TextStyle(color: Colors.white),
                           ),
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 100,
+                        child: Text(""),
+                      ),
+                      SizedBox(
+                        width: 125,
+                        child: TextButton(
                           style: ButtonStyle(
                             backgroundColor: MaterialStateProperty.all(
                                 const Color(0xFFFEA150)),
@@ -144,6 +140,10 @@ class _Expiry_AddPage extends State<ExpiryAddPage> {
                           onPressed: () {
                             Navigator.pop(context);
                           },
+                          child: const Text(
+                            "Back",
+                            style: TextStyle(color: Colors.white),
+                          ),
                         ),
                       ),
                     ],

@@ -2,6 +2,8 @@
 //
 //     final WatchList = WatchListFromJson(jsonString);
 
+// ignore_for_file: non_constant_identifier_names
+
 import 'dart:convert';
 
 List<FoodData> foodDataFromJson(String str) =>

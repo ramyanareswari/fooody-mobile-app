@@ -8,6 +8,7 @@ import 'package:fooody/screens/login.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:fooody/widgets/drawer.dart';
 
 
 class SignUp extends StatefulWidget {
@@ -37,6 +38,9 @@ class _SignUpState extends State<SignUp> {
         children: [
           Scaffold(
             backgroundColor: Colors.orange,
+            appBar: AppBar(
+                ),
+            drawer: const AppDrawer(),
             body: SingleChildScrollView(
               child: Column(
                 children: [
@@ -95,10 +99,10 @@ class _SignUpState extends State<SignUp> {
                         child: TextFormField(
                           style: const TextStyle(color: Colors.white),
                           decoration: InputDecoration(
-                            hintText: "contoh: Dummy@gmail.com",
+                            hintText: "contoh: blabla@gmail.com",
                             labelText: "Email",
                             labelStyle: const TextStyle(color: Colors.white),
-                            icon: const Icon(Icons.attach_email),
+                            icon: const Icon(Icons.email),
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(5.0)),
                             hintStyle: const TextStyle(color: Colors.white),
@@ -207,7 +211,7 @@ class _SignUpState extends State<SignUp> {
                             if (_formKey.currentState!.validate()) {
                               // Submit to Django server and wait for response
                               final response = await request.postJson(
-                                  "https://fooodybuddy.up.railway.app/registerflutter",
+                                  "https://fooodybuddy.up.railway.app/registerflutter/",
                                   convert.jsonEncode(<String, String>{
                                     'username': username,
                                     'email': email,
@@ -221,7 +225,7 @@ class _SignUpState extends State<SignUp> {
                                       "Account has been successfully registered!"),
                                 ));
                                 Navigator.pushReplacementNamed(
-                                    context, LoginScreen.ROUTE_NAME);
+                                    context, LoginScreen.routeName);
                               } else {
                                 ScaffoldMessenger.of(context)
                                     .showSnackBar(const SnackBar(
@@ -248,14 +252,14 @@ class _SignUpState extends State<SignUp> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           const Text(
-                            'Already have an account?',
+                            'Sudah memiliki akun?',
                             style: TextStyle(
                                 fontSize: 22, color: Colors.white, height: 1.5),
                           ),
                           GestureDetector(
                             onTap: () {
                               Navigator.pushReplacementNamed(
-                                  context, LoginScreen.ROUTE_NAME);
+                                  context, LoginScreen.routeName);
                             },
                             child: const Text(
                               'Login',

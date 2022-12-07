@@ -6,10 +6,11 @@ import 'package:fooody/screens/homepage.dart';
 import 'package:flutter/material.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:fooody/widgets/drawer.dart';
+import 'dart:convert' as convert;
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
-  static const ROUTE_NAME = '/login';
+  static const routeName = '/login';
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -38,6 +39,9 @@ class _LoginScreenState extends State<LoginScreen> {
             
             Scaffold(
               backgroundColor: Colors.orange,
+              appBar: AppBar(
+                ),
+              drawer: const AppDrawer(),
               body: Column(
                 children: [
                   const Flexible(
@@ -62,7 +66,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             hintText: "Masukkan Username",
                             labelText: "Username",
                             labelStyle: const TextStyle(color: Colors.white),
-                            icon: const Icon(Icons.attach_email),
+                            icon: const Icon(Icons.people),
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(5.0)),
                             hintStyle: const TextStyle(color: Colors.white),
@@ -136,15 +140,16 @@ class _LoginScreenState extends State<LoginScreen> {
                         child: TextButton(
                           onPressed: () async {
                             final response = await request.login(
-                                "https://fooodybuddy.up.railway.app/loginflutter",
+                                "https://fooodybuddy.up.railway.app/loginflutter/",
                                 {
                                   'username': username,
                                   'password': password1,
                                 });
+                                print(response);
                             if (response['status']) {
                               ScaffoldMessenger.of(context)
                                   .showSnackBar(const SnackBar(
-                                content: Text("Successfully logged in!"),
+                                content: Text("Berhasil login!"),
                               ));
 
                             } else {

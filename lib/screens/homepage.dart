@@ -15,9 +15,9 @@ class HomePage extends StatelessWidget {
     // TODO: ADD NETWORK SERVICE
     return Scaffold(
       appBar: AppBar(
-        // TODO: DIGANTI JADI USER LOGIN, tambah dolar
+        
         title: const Text(
-          'Halo, {request.username}}!',
+          'Halo!',
         ),
       ),
       drawer: const AppDrawer(),
@@ -37,7 +37,6 @@ class HomePage extends StatelessWidget {
                   ),
                 ),
               ),
-              
             ],
           ),
         ),

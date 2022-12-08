@@ -2,9 +2,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:fooody/widgets/drawer.dart';
+import 'package:expiry/screens/expiry_home_page.dart';
 import 'dart:convert' as convert;
+import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
-// import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:fooody/common/cookie_request.dart';
 
 class ExpiryAddPage extends StatefulWidget {
@@ -17,7 +18,7 @@ class ExpiryAddPage extends StatefulWidget {
 class _Expiry_AddPage extends State<ExpiryAddPage> {
   final _formKey = GlobalKey<FormState>();
   String food_name = "";
-  DateTime? food_expired_date;
+  DateTime food_expired_date = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
@@ -68,11 +69,10 @@ class _Expiry_AddPage extends State<ExpiryAddPage> {
                   ),
                 ),
                 Padding(
-                  // Menggunakan padding sebesar 8 pixels
                   padding: const EdgeInsets.all(8.0),
                   child: TextButton(
                     // Appearing food_expired_date?
-                    child: const Text("Food Expired Date"),
+                    child: const Text("Food Expired Date. Default : Today"),
                     onPressed: () {
                       showDatePicker(
                         context: context,
@@ -81,7 +81,7 @@ class _Expiry_AddPage extends State<ExpiryAddPage> {
                         lastDate: DateTime(2200),
                       ).then((date) {
                         setState(() {
-                          food_expired_date = date;
+                          food_expired_date = date!;
                         });
                       });
                     },
@@ -98,20 +98,27 @@ class _Expiry_AddPage extends State<ExpiryAddPage> {
                                 const Color(0xFFFEA150)),
                           ),
                           onPressed: () async {
-                            if (_formKey.currentState!.validate() &&
-                                food_expired_date != null) {
+                            if (_formKey.currentState!.validate()) {
                               // Main function check : POST work?
-                              print('test');
+                              // ignore: unused_local_variable
                               final response = await request.post(
-                                  "https://fooodybuddy.up.railway.app/expiry/add-food/",
+                                  "https://fooodybuddy.up.railway.app/expiry/add-food-flutter/",
                                   {
                                     "food_name": food_name,
                                     "food_expired_date":
-                                        food_expired_date.toString(),
+                                        "${food_expired_date.year}-${food_expired_date.month}-${food_expired_date.day}",
                                   });
-                              print(response);
-                              // Alternative : post using http
-                              Navigator.pop(context);
+
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(const SnackBar(
+                                content: Text("Successfully added!"),
+                              ));
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const ExpiryHomePage()),
+                              );
                             }
                           },
                           child: const Text(
@@ -132,7 +139,11 @@ class _Expiry_AddPage extends State<ExpiryAddPage> {
                                 const Color(0xFFFEA150)),
                           ),
                           onPressed: () {
-                            Navigator.pop(context);
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const ExpiryHomePage()),
+                            );
                           },
                           child: const Text(
                             "Back",

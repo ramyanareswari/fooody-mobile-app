@@ -12,12 +12,11 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: ADD NETWORK SERVICE
     return Scaffold(
       appBar: AppBar(
-        // TODO: DIGANTI JADI USER LOGIN, tambah dolar
+        
         title: const Text(
-          'Halo, {request.username}}!',
+          'Halo!',
         ),
       ),
       drawer: const AppDrawer(),
@@ -29,7 +28,7 @@ class HomePage extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
                 child: Text(
-                  'Apa yang ingin kamu lakukan hari ini?',
+                  'FAQ',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 30,
@@ -37,7 +36,6 @@ class HomePage extends StatelessWidget {
                   ),
                 ),
               ),
-              
             ],
           ),
         ),

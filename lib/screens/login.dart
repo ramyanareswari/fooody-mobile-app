@@ -4,11 +4,12 @@ import 'package:fooody/screens/signup.dart';
 // ignore: unused_import
 import 'package:fooody/screens/homepage.dart';
 import 'package:flutter/material.dart';
-import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:fooody/common/cookie_request.dart';
+import 'package:fooody/widgets/drawer.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
-  static const ROUTE_NAME = '/login';
+  static const routeName = '/login';
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -34,8 +35,12 @@ class _LoginScreenState extends State<LoginScreen> {
         key: _formKey,
         child: Stack(
           children: [
+            
             Scaffold(
-              backgroundColor: Colors.transparent,
+              backgroundColor: Colors.orange,
+              appBar: AppBar(
+                ),
+              drawer: const AppDrawer(),
               body: Column(
                 children: [
                   const Flexible(
@@ -60,7 +65,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             hintText: "Masukkan Username",
                             labelText: "Username",
                             labelStyle: const TextStyle(color: Colors.white),
-                            icon: const Icon(Icons.attach_email),
+                            icon: const Icon(Icons.people),
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(5.0)),
                             hintStyle: const TextStyle(color: Colors.white),
@@ -134,20 +139,24 @@ class _LoginScreenState extends State<LoginScreen> {
                         child: TextButton(
                           onPressed: () async {
                             final response = await request.login(
-                                "https://fooodybuddy.up.railway.app/loginflutter",
+                                "https://fooodybuddy.up.railway.app/loginflutter/",
                                 {
                                   'username': username,
                                   'password': password1,
                                 });
+                                // ignore: avoid_print
+                                print(response);
                             if (response['status']) {
                               ScaffoldMessenger.of(context)
                                   .showSnackBar(const SnackBar(
-                                content: Text("Successfully logged in!"),
+                                content: Text("Berhasil login!"),
                               ));
+
                             } else {
                               ScaffoldMessenger.of(context)
                                   .showSnackBar(const SnackBar(
-                                content: Text("Tidak berhasil login :("),
+                                content:
+                                    Text("Tidak berhasil login :("),
                               ));
                             }
                           },
@@ -168,8 +177,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      Navigator.pushReplacementNamed(context, SignUp.routeName);
-                    },
+                      Navigator.pushReplacementNamed(
+                        context, SignUp.routeName);
+                    }
+,
                     child: Container(
                       decoration: const BoxDecoration(
                           border: Border(

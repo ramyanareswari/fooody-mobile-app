@@ -11,6 +11,7 @@ import 'package:fooody/common/cookie_request.dart';
 
 class ExpiryHomePage extends StatefulWidget {
   const ExpiryHomePage({Key? key}) : super(key: key);
+  static const routeName = '/expiry';
 
   @override
   State<ExpiryHomePage> createState() => _Expiry_HomePageState();
@@ -22,7 +23,6 @@ class _Expiry_HomePageState extends State<ExpiryHomePage> {
   DateTime? food_expired_date;
 
   // Main function check : GET/Fetch work?
-  // Alternative : fetch using http
   Future<List<FoodData>> fetchFoodData(CookieRequest request) async {
     var response =
         await request.get("https://fooodybuddy.up.railway.app/expiry/json/");
@@ -57,9 +57,9 @@ class _Expiry_HomePageState extends State<ExpiryHomePage> {
                       return Column(
                         children: const [
                           Text(
-                            "Tidak ada food list :(",
+                            "You haven't add any food to your tracker :(",
                             style: TextStyle(
-                                color: Color(0xff59A5D8), fontSize: 20),
+                                color: Color(0xFFFEA150), fontSize: 40),
                           ),
                           SizedBox(height: 8),
                         ],
@@ -90,9 +90,9 @@ class _Expiry_HomePageState extends State<ExpiryHomePage> {
                                         child: Align(
                                           alignment: Alignment.centerLeft,
                                           child: Text(
-                                            snapshot
-                                                .data![index].fields.food_name,
-                                            style: const TextStyle(fontSize: 30),
+                                            snapshot.data![index].food_name,
+                                            style:
+                                                const TextStyle(fontSize: 30),
                                           ),
                                         ),
                                       ),
@@ -102,9 +102,10 @@ class _Expiry_HomePageState extends State<ExpiryHomePage> {
                                         child: Align(
                                           alignment: Alignment.centerLeft,
                                           child: Text(
-                                            snapshot.data![index].fields
-                                                .food_expired_date,
-                                            style: const TextStyle(fontSize: 15),
+                                            snapshot
+                                                .data![index].food_expired_date,
+                                            style:
+                                                const TextStyle(fontSize: 15),
                                           ),
                                         ),
                                       ),
@@ -120,7 +121,7 @@ class _Expiry_HomePageState extends State<ExpiryHomePage> {
                 child: TextButton(
                   child: const Text(
                     "Proceed to login first..",
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(color: Colors.white, fontSize: 40),
                   ),
                   style: ButtonStyle(
                     backgroundColor:
@@ -146,7 +147,7 @@ class _Expiry_HomePageState extends State<ExpiryHomePage> {
                 FloatingActionButton(
                   backgroundColor: const Color(0xFFFEA150),
                   onPressed: () {
-                    Navigator.push(
+                    Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
                           builder: (context) => const ExpiryAddPage()),

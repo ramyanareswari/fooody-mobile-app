@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:fooody/widgets/drawer.dart';
 import 'dart:convert' as convert;
 import 'package:provider/provider.dart';
+// import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:fooody/common/cookie_request.dart';
 
 class ExpiryAddPage extends StatefulWidget {
@@ -100,6 +101,7 @@ class _Expiry_AddPage extends State<ExpiryAddPage> {
                             if (_formKey.currentState!.validate() &&
                                 food_expired_date != null) {
                               // Main function check : POST work?
+                              print('test');
                               final response = await request.post(
                                   "https://fooodybuddy.up.railway.app/expiry/add-food/",
                                   {
@@ -107,17 +109,9 @@ class _Expiry_AddPage extends State<ExpiryAddPage> {
                                     "food_expired_date":
                                         food_expired_date.toString(),
                                   });
-
+                              print(response);
                               // Alternative : post using http
-                              if (response.status == 200) {
-                                // Hopefully works, status based on Django code (?)
-                                ScaffoldMessenger.of(context)
-                                    .showSnackBar(const SnackBar(
-                                  content:
-                                      Text("Food tracker creation is success!"),
-                                ));
-                                Navigator.pop(context);
-                              }
+                              Navigator.pop(context);
                             }
                           },
                           child: const Text(

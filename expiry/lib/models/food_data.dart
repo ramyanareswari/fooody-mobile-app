@@ -20,7 +20,7 @@ class FoodData {
 
   // user = models.ForeignKey(User, on_delete = models.CASCADE)
   String food_name;
-  DateTime food_expired_date;
+  String food_expired_date;
 
   factory FoodData.fromJson(Map<String, dynamic> json) => FoodData(
         food_name: json["fields"]["food_name"],

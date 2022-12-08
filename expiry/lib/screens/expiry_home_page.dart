@@ -7,10 +7,12 @@ import 'package:expiry/screens/expiry_add.dart';
 import 'dart:convert' as convert;
 import 'package:fooody/screens/login.dart';
 import 'package:provider/provider.dart';
+// import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:fooody/common/cookie_request.dart';
 
 class ExpiryHomePage extends StatefulWidget {
   const ExpiryHomePage({Key? key}) : super(key: key);
+  static const routeName = '/expiry';
 
   @override
   State<ExpiryHomePage> createState() => _Expiry_HomePageState();
@@ -90,9 +92,9 @@ class _Expiry_HomePageState extends State<ExpiryHomePage> {
                                         child: Align(
                                           alignment: Alignment.centerLeft,
                                           child: Text(
-                                            snapshot
-                                                .data![index].fields.food_name,
-                                            style: const TextStyle(fontSize: 30),
+                                            snapshot.data![index].food_name,
+                                            style:
+                                                const TextStyle(fontSize: 30),
                                           ),
                                         ),
                                       ),
@@ -102,9 +104,10 @@ class _Expiry_HomePageState extends State<ExpiryHomePage> {
                                         child: Align(
                                           alignment: Alignment.centerLeft,
                                           child: Text(
-                                            snapshot.data![index].fields
-                                                .food_expired_date,
-                                            style: const TextStyle(fontSize: 15),
+                                            snapshot
+                                                .data![index].food_expired_date,
+                                            style:
+                                                const TextStyle(fontSize: 15),
                                           ),
                                         ),
                                       ),

@@ -7,7 +7,7 @@ import 'package:fooody/screens/login.dart';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:fooody/common/cookie_request.dart';
 import 'package:fooody/widgets/drawer.dart';
 
 
@@ -210,7 +210,9 @@ class _SignUpState extends State<SignUp> {
                           onPressed: () async {
                             if (_formKey.currentState!.validate()) {
                               // Submit to Django server and wait for response
-                              final response = await request.postJson(
+
+                              // edited postJson to post()
+                              final response = await request.post(
                                   "https://fooodybuddy.up.railway.app/registerflutter/",
                                   convert.jsonEncode(<String, String>{
                                     'username': username,
@@ -247,33 +249,6 @@ class _SignUpState extends State<SignUp> {
                       ),
                       const SizedBox(
                         height: 30,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Text(
-                            'Sudah memiliki akun?',
-                            style: TextStyle(
-                                fontSize: 22, color: Colors.white, height: 1.5),
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.pushReplacementNamed(
-                                  context, LoginScreen.routeName);
-                            },
-                            child: const Text(
-                              'Login',
-                              style: TextStyle(
-                                  fontSize: 22,
-                                  color: Colors.white,
-                                  height: 1.5,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 20,
                       ),
                     ],
                   )

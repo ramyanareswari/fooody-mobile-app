@@ -9,6 +9,8 @@ import 'package:organization/screens/org_home_page.dart';
 import 'package:send_foodwaste/screens/send_foodwaste.dart';
 import 'package:tips/screens/tips_home_page.dart';
 import 'package:fooody/screens/login.dart';
+import 'package:provider/provider.dart';
+import 'package:fooody/common/cookie_request.dart';
 
 
 class AppDrawer extends StatelessWidget {
@@ -16,6 +18,7 @@ class AppDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final request = context.watch<CookieRequest>();
     return Drawer(
       child: Column(
         children: [
@@ -98,7 +101,26 @@ class AppDrawer extends StatelessWidget {
               );
             },
           ),
-          ListTile(
+          request.loggedIn
+          ? (ListTile(
+                  title: const Text('Logout'),
+                  onTap: () async {
+                    final response = await request.logout(
+                        "https://fooodybuddy.up.railway.app/logoutflutter/");
+                    if (response['status']) {
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                        content: Text("Berhasil logout!"),
+                      ));
+                      Navigator.pushReplacementNamed(
+                          context, HomePage.routeName);
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                        content: Text("Tidak berhasil logout :("),
+                      ));
+                    }
+                  },
+                ))
+          : (ListTile(
             title: const Text('Login'),
             onTap: () {
               // Route menu ke halaman login
@@ -108,7 +130,7 @@ class AppDrawer extends StatelessWidget {
                     builder: (context) => const LoginScreen()),
               );
             },
-          ),
+          )),
         ],
       ),
     );

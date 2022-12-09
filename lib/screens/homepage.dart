@@ -12,7 +12,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: ADD NETWORK SERVICE
+    final request = context.watch<CookieRequest>();
     return Scaffold(
       appBar: AppBar(
         

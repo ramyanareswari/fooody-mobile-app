@@ -4,9 +4,8 @@ import 'package:fooody/screens/signup.dart';
 // ignore: unused_import
 import 'package:fooody/screens/homepage.dart';
 import 'package:flutter/material.dart';
-import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:fooody/common/cookie_request.dart';
 import 'package:fooody/widgets/drawer.dart';
-import 'dart:convert' as convert;
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -151,6 +150,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                   .showSnackBar(const SnackBar(
                                 content: Text("Berhasil login!"),
                               ));
+                              Navigator.pushReplacementNamed(
+                                context, HomePage.routeName);
+                              
 
                             } else {
                               ScaffoldMessenger.of(context)

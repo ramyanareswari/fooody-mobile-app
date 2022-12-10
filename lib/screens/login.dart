@@ -35,9 +35,8 @@ class _LoginScreenState extends State<LoginScreen> {
         key: _formKey,
         child: Stack(
           children: [
-            
             Scaffold(
-              backgroundColor: Colors.orange,
+              backgroundColor: Color(0xFFFEA150),
               appBar: AppBar(
                 ),
               drawer: const AppDrawer(),
@@ -46,7 +45,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   const Flexible(
                     child: Center(
                       child: Text(
-                        'Fooody Buddy',
+                        'Login',
                         style: TextStyle(
                             color: Colors.white,
                             fontSize: 60,
@@ -152,8 +151,6 @@ class _LoginScreenState extends State<LoginScreen> {
                               ));
                               Navigator.pushReplacementNamed(
                                 context, HomePage.routeName);
-                              
-
                             } else {
                               ScaffoldMessenger.of(context)
                                   .showSnackBar(const SnackBar(
@@ -181,8 +178,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     onTap: () {
                       Navigator.pushReplacementNamed(
                         context, SignUp.routeName);
-                    }
-,
+                    },
                     child: Container(
                       decoration: const BoxDecoration(
                           border: Border(
@@ -191,7 +187,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       child: const Text(
                         'Belum punya akun? Buat sekarang!',
                         style: TextStyle(
-                            fontSize: 14, color: Colors.white, height: 1.5),
+                            fontSize: 16, color: Colors.white, height: 1.5),
                       ),
                     ),
                   ),
@@ -202,6 +198,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
             )
           ],
-        ));
+        ),
+    );
   }
 }

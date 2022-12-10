@@ -37,7 +37,7 @@ class _SignUpState extends State<SignUp> {
       child: Stack(
         children: [
           Scaffold(
-            backgroundColor: Colors.orange,
+            backgroundColor: Color(0xFFFEA150),
             appBar: AppBar(
                 ),
             drawer: const AppDrawer(),
@@ -50,7 +50,7 @@ class _SignUpState extends State<SignUp> {
                   Stack(
                     children: const [
                       Center(
-                        child: Text('Register Account',
+                        child: Text('Registrasi Akun',
                             style:
                                 TextStyle(fontSize: 60, color: Colors.white)),
                       ),
@@ -67,6 +67,7 @@ class _SignUpState extends State<SignUp> {
                         child: TextFormField(
                           style: const TextStyle(color: Colors.white),
                           decoration: InputDecoration(
+                            hintText: "Masukkan Username",
                             labelText: "Username",
                             labelStyle: const TextStyle(color: Colors.white),
                             icon: const Icon(Icons.people),
@@ -99,7 +100,7 @@ class _SignUpState extends State<SignUp> {
                         child: TextFormField(
                           style: const TextStyle(color: Colors.white),
                           decoration: InputDecoration(
-                            hintText: "contoh: blabla@gmail.com",
+                            hintText: "Contoh: blabla@gmail.com",
                             labelText: "Email",
                             labelStyle: const TextStyle(color: Colors.white),
                             icon: const Icon(Icons.email),

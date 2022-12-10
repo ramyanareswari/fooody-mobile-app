@@ -37,7 +37,7 @@ class _SignUpState extends State<SignUp> {
       child: Stack(
         children: [
           Scaffold(
-            backgroundColor: Colors.orange,
+            backgroundColor: Color(0xFFFEA150),
             appBar: AppBar(
                 ),
             drawer: const AppDrawer(),
@@ -50,9 +50,13 @@ class _SignUpState extends State<SignUp> {
                   Stack(
                     children: const [
                       Center(
-                        child: Text('Register Account',
+                        child: Text('Registrasi Akun',
                             style:
-                                TextStyle(fontSize: 60, color: Colors.white)),
+                                TextStyle(
+                                fontFamily: 'Poppins', 
+                                fontWeight: FontWeight.bold,
+                                fontSize: 55, 
+                                color: Colors.white)),
                       ),
                     ],
                   ),
@@ -65,14 +69,15 @@ class _SignUpState extends State<SignUp> {
                         padding: const EdgeInsets.symmetric(
                             horizontal: 25.0, vertical: 10.0),
                         child: TextFormField(
-                          style: const TextStyle(color: Colors.white),
+                          style: const TextStyle(color: Colors.white, fontFamily: 'Poppins'),
                           decoration: InputDecoration(
+                            hintText: "Masukkan Username",
                             labelText: "Username",
-                            labelStyle: const TextStyle(color: Colors.white),
+                            labelStyle: const TextStyle(color: Colors.white, fontFamily: 'Poppins'),
                             icon: const Icon(Icons.people),
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(5.0)),
-                            hintStyle: const TextStyle(color: Colors.white),
+                            hintStyle: const TextStyle(color: Colors.white, fontFamily: 'Poppins'),
                           ),
                           onChanged: (String? value) {
                             setState(() {
@@ -97,15 +102,15 @@ class _SignUpState extends State<SignUp> {
                         padding: const EdgeInsets.symmetric(
                             horizontal: 25.0, vertical: 10.0),
                         child: TextFormField(
-                          style: const TextStyle(color: Colors.white),
+                          style: const TextStyle(color: Colors.white, fontFamily: 'Poppins'),
                           decoration: InputDecoration(
-                            hintText: "contoh: blabla@gmail.com",
+                            hintText: "Contoh: blabla@gmail.com",
                             labelText: "Email",
-                            labelStyle: const TextStyle(color: Colors.white),
+                            labelStyle: const TextStyle(color: Colors.white, fontFamily: 'Poppins'),
                             icon: const Icon(Icons.email),
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(5.0)),
-                            hintStyle: const TextStyle(color: Colors.white),
+                            hintStyle: const TextStyle(color: Colors.white, fontFamily: 'Poppins'),
                           ),
                           onChanged: (String? value) {
                             setState(() {
@@ -131,17 +136,17 @@ class _SignUpState extends State<SignUp> {
                             horizontal: 25.0, vertical: 10.0),
                         child: TextFormField(
                           obscureText: true,
-                          style: const TextStyle(color: Colors.white),
+                          style: const TextStyle(color: Colors.white, fontFamily: 'Poppins'),
                           decoration: InputDecoration(
                             hintText: "Masukkan Password",
                             labelText: "Password",
-                            labelStyle: const TextStyle(color: Colors.white),
+                            labelStyle: const TextStyle(color: Colors.white, fontFamily: 'Poppins'),
                             icon: const Icon(
                               Icons.lock_outline,
                             ),
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(5.0)),
-                            hintStyle: const TextStyle(color: Colors.white),
+                            hintStyle: const TextStyle(color: Colors.white, fontFamily: 'Poppins'),
                           ),
                           onChanged: (String? value) {
                             setState(() {
@@ -167,15 +172,15 @@ class _SignUpState extends State<SignUp> {
                             horizontal: 25.0, vertical: 10.0),
                         child: TextFormField(
                           obscureText: true,
-                          style: const TextStyle(color: Colors.white),
+                          style: const TextStyle(color: Colors.white, fontFamily: 'Poppins'),
                           decoration: InputDecoration(
                             hintText: "Konfirmasi Password",
                             labelText: "Konfirmasi Password",
-                            labelStyle: const TextStyle(color: Colors.white),
+                            labelStyle: const TextStyle(color: Colors.white, fontFamily: 'Poppins'),
                             icon: const Icon(Icons.lock_outline),
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(5.0)),
-                            hintStyle: const TextStyle(color: Colors.white),
+                            hintStyle: const TextStyle(color: Colors.white, fontFamily: 'Poppins'),
                           ),
                           onChanged: (String? value) {
                             setState(() {
@@ -224,7 +229,7 @@ class _SignUpState extends State<SignUp> {
                                 ScaffoldMessenger.of(context)
                                     .showSnackBar(const SnackBar(
                                   content: Text(
-                                      "Account has been successfully registered!"),
+                                      "Akun berhasil dibuat!"),
                                 ));
                                 Navigator.pushReplacementNamed(
                                     context, LoginScreen.routeName);
@@ -232,7 +237,7 @@ class _SignUpState extends State<SignUp> {
                                 ScaffoldMessenger.of(context)
                                     .showSnackBar(const SnackBar(
                                   content: Text(
-                                      "An error occured, please try again."),
+                                      "Tidak berhasil buat akun. Mohon cek kembali input anda."),
                                 ));
                               }
                             }
@@ -240,6 +245,7 @@ class _SignUpState extends State<SignUp> {
                           child: const Text(
                             'Submit',
                             style: TextStyle(
+                                fontFamily: 'Poppins',
                                 fontSize: 22,
                                 color: Colors.white,
                                 height: 1.5,
@@ -249,33 +255,6 @@ class _SignUpState extends State<SignUp> {
                       ),
                       const SizedBox(
                         height: 30,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Text(
-                            'Sudah memiliki akun?',
-                            style: TextStyle(
-                                fontSize: 22, color: Colors.white, height: 1.5),
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.pushReplacementNamed(
-                                  context, LoginScreen.routeName);
-                            },
-                            child: const Text(
-                              'Login',
-                              style: TextStyle(
-                                  fontSize: 22,
-                                  color: Colors.white,
-                                  height: 1.5,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 20,
                       ),
                     ],
                   )

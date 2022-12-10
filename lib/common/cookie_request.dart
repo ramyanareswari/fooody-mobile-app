@@ -129,4 +129,19 @@ class CookieRequest {
 
     return cookie;
   }
+
+   Future<dynamic> logout(String url) async {
+    http.Response response =
+      await _client.post(Uri.parse(url));
+
+    if (response.statusCode == 200) {
+      loggedIn = false;
+    } else {
+      loggedIn = true;
+    }
+
+    cookies = {};
+
+    return json.decode(response.body);
+  }
 }

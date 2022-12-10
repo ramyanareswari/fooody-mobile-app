@@ -26,7 +26,10 @@ class _Expiry_AddPage extends State<ExpiryAddPage> {
     final request = context.watch<CookieRequest>();
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Expiry Add Page"),
+        title: const Text(
+          "Expiry Add Page",
+          style: TextStyle(fontFamily: 'Poppins'),
+        ),
       ),
       drawer: const AppDrawer(),
       body: Form(
@@ -43,6 +46,8 @@ class _Expiry_AddPage extends State<ExpiryAddPage> {
                     decoration: InputDecoration(
                       hintText: "Example: Mi Yamin Fasilkom",
                       labelText: "Food Name",
+                      hintStyle: const TextStyle(fontFamily: 'Poppins'),
+                      labelStyle: const TextStyle(fontFamily: 'Poppins'),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(5.0),
                       ),
@@ -72,7 +77,8 @@ class _Expiry_AddPage extends State<ExpiryAddPage> {
                   padding: const EdgeInsets.all(8.0),
                   child: TextButton(
                     // Appearing food_expired_date?
-                    child: const Text("Food Expired Date. Default : Today"),
+                    child: const Text("Food Expired Date. Default : Today",
+                        style: TextStyle(fontFamily: 'Poppins')),
                     onPressed: () {
                       showDatePicker(
                         context: context,
@@ -111,7 +117,8 @@ class _Expiry_AddPage extends State<ExpiryAddPage> {
 
                               ScaffoldMessenger.of(context)
                                   .showSnackBar(const SnackBar(
-                                content: Text("Successfully added!"),
+                                content: Text("Successfully added!",
+                                    style: TextStyle(fontFamily: 'Poppins')),
                               ));
                               Navigator.pushReplacement(
                                 context,
@@ -123,7 +130,8 @@ class _Expiry_AddPage extends State<ExpiryAddPage> {
                           },
                           child: const Text(
                             "Submit",
-                            style: TextStyle(color: Colors.white),
+                            style: TextStyle(
+                                color: Colors.white, fontFamily: 'Poppins'),
                           ),
                         ),
                       ),
@@ -147,7 +155,8 @@ class _Expiry_AddPage extends State<ExpiryAddPage> {
                           },
                           child: const Text(
                             "Back",
-                            style: TextStyle(color: Colors.white),
+                            style: TextStyle(
+                                color: Colors.white, fontFamily: 'Poppins'),
                           ),
                         ),
                       ),

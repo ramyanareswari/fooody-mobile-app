@@ -37,7 +37,7 @@ class _SignUpState extends State<SignUp> {
       child: Stack(
         children: [
           Scaffold(
-            backgroundColor: Color(0xFFFEA150),
+            backgroundColor: const Color(0xFFFEA150),
             appBar: AppBar(
                 ),
             drawer: const AppDrawer(),

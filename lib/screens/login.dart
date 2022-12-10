@@ -36,7 +36,7 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Stack(
           children: [
             Scaffold(
-              backgroundColor: Color(0xFFFEA150),
+              backgroundColor: const Color(0xFFFEA150),
               appBar: AppBar(
                 ),
               drawer: const AppDrawer(),
@@ -144,7 +144,6 @@ class _LoginScreenState extends State<LoginScreen> {
                                   'username': username,
                                   'password': password1,
                                 });
-                                print(response);
                             if (response['status']) {
                               ScaffoldMessenger.of(context)
                                   .showSnackBar(const SnackBar(

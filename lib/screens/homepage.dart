@@ -17,20 +17,25 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         
         title: const Text(
-          'Home Page',
+          'Home Page', style: TextStyle(fontFamily: 'Poppins')
         ),
       ),
       drawer: const AppDrawer(),
-      body: Column(
-        children: [
-          const Flexible(
-            child: Center(
-              child: Text(
-                'Fooody Buddy',
-                style: TextStyle(
-                    color: Color(0xFFFEA150),
-                    fontSize: 60,
-                    fontWeight: FontWeight.bold),
+      body: ListView(
+        children: <Widget>[
+          Container(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(
+                    horizontal: 23.0, vertical: 130.0),
+              child: Center(
+                child: Text(
+                  'Fooody Buddy',
+                  style: TextStyle(
+                      color: Color(0xFFFEA150),
+                      fontSize: 55,
+                      fontFamily: 'Poppins',
+                      fontWeight: FontWeight.bold),
+                ),
               ),
             ),
           ),
@@ -42,7 +47,8 @@ class HomePage extends StatelessWidget {
                 child: Text(
                 'About Our App',
                 style: TextStyle(
-                    fontSize: 20),
+                    fontSize: 18,
+                    fontFamily: 'Poppins',),
                 ),
               ),
             ],
@@ -56,7 +62,10 @@ class HomePage extends StatelessWidget {
                   child: Padding(
                               padding:
                                   const EdgeInsets.only(left: 10.0, bottom: 10.0, right: 10.0),
-                    child: Text('Fooody Buddy hadir sebagai solusi untuk memfasilitasi masyarakat dalam menyalurkan limbah makanan yang diproduksi. Tak hanya itu, kami juga menginisiasi langkah preventif dengan membuat fitur tracker kedaluwarsa makanan. Melalui digitalisasi, kami berharap aplikasi ini dapat meningkatkan kesadaran masyarakat terkait pentingnya pengelolaan food waste.'),   
+                    child: Text('Fooody Buddy hadir sebagai solusi untuk memfasilitasi masyarakat dalam menyalurkan limbah makanan yang diproduksi. Tak hanya itu, kami juga menginisiasi langkah preventif dengan membuat fitur tracker kedaluwarsa makanan. Melalui digitalisasi, kami berharap aplikasi ini dapat meningkatkan kesadaran masyarakat terkait pentingnya pengelolaan food waste.',
+                    style: TextStyle(
+                      fontFamily: 'Poppins',),
+                    ),   
                   )
                 ),
               )
@@ -70,7 +79,8 @@ class HomePage extends StatelessWidget {
                 child: Text(
                 'Frequently Asked Questions (FAQ)',
                 style: TextStyle(
-                    fontSize: 20),
+                    fontFamily: 'Poppins',
+                    fontSize: 18),
                 ),
               ),
             ],
@@ -91,7 +101,7 @@ class HomePage extends StatelessWidget {
                               children: <Widget>[
                                 Text(
                                   'Question 1',
-                                  style: const TextStyle(fontSize: 18), 
+                                  style: const TextStyle(fontSize: 15, fontFamily: 'Poppins'), 
                                 )
                               ])),
                       Padding(
@@ -99,7 +109,7 @@ class HomePage extends StatelessWidget {
                               const EdgeInsets.only(left: 10.0, bottom: 10.0, right: 10.0),
                           child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: <Widget>[Text('Tempor ut dolore lorem kasd vero ipsum.')])),
+                              children: <Widget>[Text('Tempor ut dolore lorem kasd vero.', style: TextStyle(fontFamily: 'Poppins'))])),
                     ],
                   ),
                 ),
@@ -122,7 +132,7 @@ class HomePage extends StatelessWidget {
                               children: <Widget>[
                                 Text(
                                   'Question 2',
-                                  style: const TextStyle(fontSize: 18),
+                                  style: const TextStyle(fontSize: 15, fontFamily: 'Poppins'), 
                                 )
                               ])),
                       Padding(
@@ -130,11 +140,11 @@ class HomePage extends StatelessWidget {
                               const EdgeInsets.only(left: 10.0, bottom: 10.0, right: 10.0),
                           child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: <Widget>[Text('Tempor ut dolore lorem kasd vero ipsum.')])),
+                              children: <Widget>[Text('Tempor ut dolore lorem kasd vero.', style: TextStyle(fontFamily: 'Poppins'))])),
                     ],
                   ),
                 ),
-              ),    
+              ),
             ],
           ),
           Column(
@@ -153,7 +163,7 @@ class HomePage extends StatelessWidget {
                               children: <Widget>[
                                 Text(
                                   'Question 3',
-                                  style: const TextStyle(fontSize: 18),
+                                  style: const TextStyle(fontSize: 15, fontFamily: 'Poppins'), 
                                 )
                               ])),
                       Padding(
@@ -161,11 +171,11 @@ class HomePage extends StatelessWidget {
                               const EdgeInsets.only(left: 10.0, bottom: 10.0, right: 10.0),
                           child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: <Widget>[Text('Tempor ut dolore lorem kasd vero ipsum.')])),
+                              children: <Widget>[Text('Tempor ut dolore lorem kasd vero.', style: TextStyle(fontFamily: 'Poppins'))])),
                     ],
                   ),
                 ),
-              ),    
+              ),
             ],
           ),
           Column(
@@ -184,7 +194,7 @@ class HomePage extends StatelessWidget {
                               children: <Widget>[
                                 Text(
                                   'Question 4',
-                                  style: const TextStyle(fontSize: 18),
+                                  style: const TextStyle(fontSize: 15, fontFamily: 'Poppins'), 
                                 )
                               ])),
                       Padding(
@@ -192,7 +202,69 @@ class HomePage extends StatelessWidget {
                               const EdgeInsets.only(left: 10.0, bottom: 10.0, right: 10.0),
                           child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: <Widget>[Text('Tempor ut dolore lorem kasd vero ipsum.')])),
+                              children: <Widget>[Text('Tempor ut dolore lorem kasd vero.', style: TextStyle(fontFamily: 'Poppins'))])),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+          Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 20.0, vertical: 5.0),
+                child: Card(
+                  child: Column(
+                    children: <Widget>[
+                      Padding(
+                          padding:
+                              const EdgeInsets.only(left: 10.0, top: 10.0, bottom: 15.0),
+                          child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: <Widget>[
+                                Text(
+                                  'Question 5',
+                                  style: const TextStyle(fontSize: 15, fontFamily: 'Poppins'), 
+                                )
+                              ])),
+                      Padding(
+                          padding:
+                              const EdgeInsets.only(left: 10.0, bottom: 10.0, right: 10.0),
+                          child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[Text('Tempor ut dolore lorem kasd vero.', style: TextStyle(fontFamily: 'Poppins'))])),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+          Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 20.0, vertical: 5.0),
+                child: Card(
+                  child: Column(
+                    children: <Widget>[
+                      Padding(
+                          padding:
+                              const EdgeInsets.only(left: 10.0, top: 10.0, bottom: 15.0),
+                          child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: <Widget>[
+                                Text(
+                                  'Question 6',
+                                  style: const TextStyle(fontSize: 15, fontFamily: 'Poppins'), 
+                                )
+                              ])),
+                      Padding(
+                          padding:
+                              const EdgeInsets.only(left: 10.0, bottom: 10.0, right: 10.0),
+                          child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[Text('Tempor ut dolore lorem kasd vero.', style: TextStyle(fontFamily: 'Poppins'))])),
                     ],
                   ),
                 ),

@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:fooody/common/cookie_request.dart';
 import 'package:fooody/screens/login.dart';
 import 'package:fooody/widgets/drawer.dart';
+// ignore: depend_on_referenced_packages
 import 'package:provider/provider.dart';
 import 'package:send_foodwaste/util/fetch_foodwaste.dart';
 import 'package:send_foodwaste/screens/add_foodwaste.dart';
+// ignore: depend_on_referenced_packages
 import 'package:intl/intl.dart';
 
 class SendFoodHomePage extends StatefulWidget {

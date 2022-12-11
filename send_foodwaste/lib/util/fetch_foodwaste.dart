@@ -1,5 +1,3 @@
-import 'package:http/http.dart' as http;
-import 'dart:convert';
 import 'package:send_foodwaste/models/send_foodwaste_model.dart';
 import 'package:fooody/common/cookie_request.dart';
 

@@ -214,9 +214,6 @@ class _SignUpState extends State<SignUp> {
                         child: TextButton(
                           onPressed: () async {
                             if (_formKey.currentState!.validate()) {
-                              // Submit to Django server and wait for response
-
-                              // edited postJson to post()
                               final response = await request.post(
                                   "https://fooodybuddy.up.railway.app/registerflutter/",
                                   convert.jsonEncode(<String, String>{

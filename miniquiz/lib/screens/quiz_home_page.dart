@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:fooody/screens/login.dart';
 import 'package:fooody/common/cookie_request.dart';
 import 'package:fooody/widgets/drawer.dart';
+import 'package:miniquiz/screens/asessment_page.dart';
 import 'package:miniquiz/screens/quiz_question_page.dart';
 // ignore: unused_import
 import 'package:miniquiz/screens/quiz_result_page.dart';
@@ -89,11 +90,15 @@ class _Quiz_HomePageState extends State<QuizHomePage> {
                   ],
                 ),
                 ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStateProperty.all(const Color(0xFFFEA150)),
+                    ),
                     onPressed: () {
                       Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => QuestionPage(0)),
+                            builder: (context) => AssessmentPage("", 1)),
                       );
                     },
                     child: const Text(

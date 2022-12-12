@@ -196,6 +196,8 @@ class _SignUpState extends State<SignUp> {
                           validator: (value) {
                             if (value!.isEmpty) {
                               return 'Password tidak boleh kosong';
+                            } else if (value != password1){
+                              return 'Password konfirmasi berbeda';
                             }
                             return null;
                           },

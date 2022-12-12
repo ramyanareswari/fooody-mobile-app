@@ -102,25 +102,6 @@ class _AddArticlePage extends State<AddArticlePage> {
                     },
                   ),
                 ),
-                Padding(
-                  // Menggunakan padding sebesar 8 pixels
-                  padding: const EdgeInsets.all(8.0),
-                  child: TextButton(
-                    child: const Text("Select article's published date"),
-                    onPressed: () {
-                      showDatePicker(
-                        context: context,
-                        initialDate: DateTime.now(),
-                        firstDate: DateTime(2000),
-                        lastDate: DateTime(2200),
-                      ).then((date) {
-                        setState(() {
-                          typedpublish = date!;
-                        });
-                      });
-                    },
-                  ),
-                ),
                 Center(
                   child: Column(
                     children: [
@@ -172,3 +153,4 @@ class _AddArticlePage extends State<AddArticlePage> {
     );
   }
 }
+

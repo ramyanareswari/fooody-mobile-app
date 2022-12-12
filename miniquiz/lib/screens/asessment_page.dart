@@ -1,6 +1,7 @@
 // ignore_for_file: non_constant_identifier_names, depend_on_referenced_packages, library_private_types_in_public_api, use_build_context_synchronously, sort_child_properties_last
 
 import 'dart:convert';
+import 'package:fooody/widgets/drawer.dart';
 import 'package:miniquiz/screens/quiz_result_page.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -74,7 +75,7 @@ class _AssessmentPageState extends State<AssessmentPage> {
               style: const TextStyle(
                 fontSize: 22,
                 fontWeight: FontWeight.bold,
-                color: Colors.orange,
+                color: Color(0xFFFEA150),
               ),
             ),
           ],
@@ -134,7 +135,7 @@ class _AssessmentPageState extends State<AssessmentPage> {
                 width: 60,
                 height: 60,
                 child: CircularProgressIndicator(
-                  color: Colors.pink,
+                  color: Color(0xFFFEA150),
                 ),
               ),
               Padding(
@@ -192,7 +193,7 @@ class _AssessmentPageState extends State<AssessmentPage> {
                 width: 60,
                 height: 60,
                 child: CircularProgressIndicator(
-                  color: Colors.pink,
+                  color: Color(0xFFFEA150),
                 ),
               ),
               Padding(
@@ -221,7 +222,7 @@ class _AssessmentPageState extends State<AssessmentPage> {
         });
       },
       title: _buildCustomText(data),
-      activeColor: Colors.pink,
+      activeColor: const Color(0xFFFEA150),
     );
   }
 
@@ -248,7 +249,7 @@ class _AssessmentPageState extends State<AssessmentPage> {
       },
       child: const Text("Submit"),
       style: ButtonStyle(
-        backgroundColor: MaterialStateProperty.all(Colors.pink),
+        backgroundColor: MaterialStateProperty.all(const Color(0xFFFEA150)),
       ),
     );
   }
@@ -302,6 +303,7 @@ class _AssessmentPageState extends State<AssessmentPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        drawer: const AppDrawer(),
         appBar: AppBar(
           title: const Text('Food Awareness Mini Quiz',
               style: TextStyle(
@@ -310,7 +312,7 @@ class _AssessmentPageState extends State<AssessmentPage> {
               )),
           elevation: 5.0,
           centerTitle: true,
-          backgroundColor: Colors.pink,
+          backgroundColor: const Color(0xFFFEA150),
         ),
         body: SingleChildScrollView(
           physics: const ScrollPhysics(),

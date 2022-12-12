@@ -5,10 +5,7 @@ import 'package:tips/models/tips_model.dart';
 import 'package:intl/intl.dart';
 
 class DetailTipsPage extends StatefulWidget {
-  const DetailTipsPage({
-    super.key,
-    required this.model,
-  });
+  const DetailTipsPage({super.key, required this.model});
   static const String routeName = "detail-tips";
   final MyArticle model;
 

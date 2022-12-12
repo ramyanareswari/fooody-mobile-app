@@ -206,7 +206,6 @@ class _Diary_HomePageState extends State<DiaryHomePage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               textDirection: TextDirection.rtl,
               children: [
-                // Floating Action Button only appear when the user is logged in
                 if (request.loggedIn) ...[
                   FloatingActionButton(
                     backgroundColor: const Color(0xFFFEA150),

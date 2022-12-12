@@ -68,6 +68,7 @@ class _DiaryFormState extends State<DiaryForm> {
                               fontSize: 55,
                               fontWeight: FontWeight.bold,
                               decoration: TextDecoration.underline)),
+                      
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: TextFormField(

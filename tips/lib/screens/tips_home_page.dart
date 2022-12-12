@@ -1,10 +1,18 @@
-// ignore_for_file: camel_case_types
+// ignore_for_file: camel_case_types, unused_import, depend_on_referenced_packages, unused_local_variable
 
+// import material
 import 'package:flutter/material.dart';
+// import widgets
 import 'package:fooody/widgets/drawer.dart';
+import 'package:tips/screens/add_tips.dart';
+import 'package:tips/widgets/widget.dart';
+// imports for processing data
 import 'package:tips/common/fetch_tips.dart';
 import 'package:tips/models/tips_model.dart';
-import 'package:tips/widgets/widget.dart';
+import 'dart:convert' as convert;
+import 'package:fooody/screens/login.dart';
+import 'package:provider/provider.dart';
+import 'package:fooody/common/cookie_request.dart';
 
 class TipsHomePage extends StatefulWidget {
   const TipsHomePage({Key? key}) : super(key: key);
@@ -24,7 +32,7 @@ class _Tips_HomePageState extends State<TipsHomePage> {
     getArticleData();
   }
 
-  getArticleData() {
+  void getArticleData() {
     //debugPrint("Halooo");
     setLoading(true);
     setState(() {
@@ -47,6 +55,7 @@ class _Tips_HomePageState extends State<TipsHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final request = context.watch<CookieRequest>();
     return Scaffold(
       appBar: AppBar(
         title: const Text("Foody Article Home Page"),
@@ -57,12 +66,12 @@ class _Tips_HomePageState extends State<TipsHomePage> {
               Padding(
                 padding: const EdgeInsets.only(right: 20),
                 child: GestureDetector(
-                  onTap: () {
-                    getArticleData();
-                  },
                   child: const Icon(
                     Icons.refresh,
                   ),
+                  onTap: () {
+                    getArticleData();
+                  },
                 ),
               )
             ],
@@ -80,36 +89,52 @@ class _Tips_HomePageState extends State<TipsHomePage> {
         if (!isLoading && list.isEmpty) {
           return Center(
             child: InkWell(
-              onTap: () {
-                getArticleData();
-              },
               child: const Padding(
                 padding: EdgeInsets.all(8.0),
                 child: Text(
                     "Datanya kosong. Coba ketuk tulisan ini untuk memuat ulang"),
               ),
+              onTap: () {
+                getArticleData();
+              },
             ),
           );
         }
         return _buildListView();
       }),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: const Color(0xFFFEA150),
-        onPressed: () {
 
-        },
-        tooltip: 'Tambahkan Artikel!',
-        child: const Icon(Icons.add),
+      floatingActionButton: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          if (request.loggedIn) ...[
+            FloatingActionButton(
+              backgroundColor: const Color(0xFFFEA150),
+              onPressed: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const AddArticlePage()),
+                );
+              },
+              tooltip: 'Tambahkan Artikel!',
+              child: const Icon(Icons.add),
+            ),
+          ],
+        ],
       ),
     );
   }
 
   Widget _buildListView() {
+    final request = context.watch<CookieRequest>();
     return ListView(
+      
       physics: const ClampingScrollPhysics(),
       children: [
-        const CardBannerNotLoggedIn(),
-        const CardBannerLoggedIn(),
+        request.loggedIn?
+        const CardBannerLoggedIn()
+        : const CardBannerNotLoggedIn(),
+
         ListView.builder(
             physics: const ClampingScrollPhysics(),
             shrinkWrap: true,
@@ -123,3 +148,5 @@ class _Tips_HomePageState extends State<TipsHomePage> {
     );
   }
 }
+
+

@@ -4,11 +4,12 @@ import 'package:fooody/screens/signup.dart';
 // ignore: unused_import
 import 'package:fooody/screens/homepage.dart';
 import 'package:flutter/material.dart';
-import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:fooody/common/cookie_request.dart';
+import 'package:fooody/widgets/drawer.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
-  static const ROUTE_NAME = '/login';
+  static const routeName = '/login';
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -35,16 +36,20 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Stack(
           children: [
             Scaffold(
-              backgroundColor: Colors.transparent,
+              backgroundColor: const Color(0xFFFEA150),
+              appBar: AppBar(
+                ),
+              drawer: const AppDrawer(),
               body: Column(
                 children: [
                   const Flexible(
                     child: Center(
                       child: Text(
-                        'Fooody Buddy',
+                        'Login',
                         style: TextStyle(
                             color: Colors.white,
-                            fontSize: 60,
+                            fontFamily: 'Poppins',
+                            fontSize: 55,
                             fontWeight: FontWeight.bold),
                       ),
                     ),
@@ -55,15 +60,15 @@ class _LoginScreenState extends State<LoginScreen> {
                         padding: const EdgeInsets.symmetric(
                             horizontal: 25.0, vertical: 10.0),
                         child: TextFormField(
-                          style: const TextStyle(color: Colors.white),
+                          style: const TextStyle(color: Colors.white, fontFamily: 'Poppins'),
                           decoration: InputDecoration(
                             hintText: "Masukkan Username",
                             labelText: "Username",
-                            labelStyle: const TextStyle(color: Colors.white),
-                            icon: const Icon(Icons.attach_email),
+                            labelStyle: const TextStyle(color: Colors.white, fontFamily: 'Poppins'),
+                            icon: const Icon(Icons.people),
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(5.0)),
-                            hintStyle: const TextStyle(color: Colors.white),
+                            hintStyle: const TextStyle(color: Colors.white, fontFamily: 'Poppins'),
                           ),
                           onChanged: (String? value) {
                             setState(() {
@@ -89,18 +94,18 @@ class _LoginScreenState extends State<LoginScreen> {
                             horizontal: 25.0, vertical: 10.0),
                         child: TextFormField(
                           obscureText: true,
-                          style: const TextStyle(color: Colors.white),
+                          style: const TextStyle(color: Colors.white, fontFamily: 'Poppins'),
                           decoration: InputDecoration(
                             hintText: "Masukkan Password",
                             labelText: "Password",
-                            labelStyle: const TextStyle(color: Colors.white),
+                            labelStyle: const TextStyle(color: Colors.white, fontFamily: 'Poppins'),
                             icon: const Icon(
                               Icons.lock_outline,
                             ),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(5.0),
                             ),
-                            hintStyle: const TextStyle(color: Colors.white),
+                            hintStyle: const TextStyle(color: Colors.white, fontFamily: 'Poppins'),
                           ),
                           onChanged: (String? value) {
                             setState(() {
@@ -134,7 +139,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         child: TextButton(
                           onPressed: () async {
                             final response = await request.login(
-                                "https://fooodybuddy.up.railway.app/loginflutter",
+                                "https://fooodybuddy.up.railway.app/loginflutter/",
                                 {
                                   'username': username,
                                   'password': password1,
@@ -142,18 +147,22 @@ class _LoginScreenState extends State<LoginScreen> {
                             if (response['status']) {
                               ScaffoldMessenger.of(context)
                                   .showSnackBar(const SnackBar(
-                                content: Text("Successfully logged in!"),
+                                content: Text("Berhasil login!"),
                               ));
+                              Navigator.pushReplacementNamed(
+                                context, HomePage.routeName);
                             } else {
                               ScaffoldMessenger.of(context)
                                   .showSnackBar(const SnackBar(
-                                content: Text("Tidak berhasil login :("),
+                                content:
+                                    Text("Tidak berhasil login. Mohon cek kembali input anda."),
                               ));
                             }
                           },
                           child: const Text(
                             'Submit',
                             style: TextStyle(
+                                fontFamily: 'Poppins',
                                 fontSize: 22,
                                 color: Colors.white,
                                 height: 1.5,
@@ -168,7 +177,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      Navigator.pushReplacementNamed(context, SignUp.routeName);
+                      Navigator.pushReplacementNamed(
+                        context, SignUp.routeName);
                     },
                     child: Container(
                       decoration: const BoxDecoration(
@@ -178,7 +188,10 @@ class _LoginScreenState extends State<LoginScreen> {
                       child: const Text(
                         'Belum punya akun? Buat sekarang!',
                         style: TextStyle(
-                            fontSize: 14, color: Colors.white, height: 1.5),
+                            fontFamily: 'Poppins', 
+                            fontSize: 16, 
+                            color: Colors.white, 
+                            height: 1.5),
                       ),
                     ),
                   ),
@@ -189,6 +202,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
             )
           ],
-        ));
+        ),
+    );
   }
 }

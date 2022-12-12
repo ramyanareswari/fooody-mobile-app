@@ -2,7 +2,6 @@
 // Taken from https://gist.github.com/Meta502/1605fdba3b141fbf67dba689e9e55498
 
 
-
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -129,5 +128,20 @@ class CookieRequest {
     }
 
     return cookie;
+  }
+
+   Future<dynamic> logout(String url) async {
+    http.Response response =
+      await _client.post(Uri.parse(url));
+
+    if (response.statusCode == 200) {
+      loggedIn = false;
+    } else {
+      loggedIn = true;
+    }
+
+    cookies = {};
+
+    return json.decode(response.body);
   }
 }

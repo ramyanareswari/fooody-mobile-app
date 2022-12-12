@@ -1,5 +1,6 @@
 // ignore_for_file: camel_case_types, depend_on_referenced_packages, non_constant_identifier_names, unused_import, sort_child_properties_last, unused_field
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:fooody/widgets/drawer.dart';
 import 'package:expiry/models/food_data.dart';
@@ -11,6 +12,7 @@ import 'package:fooody/common/cookie_request.dart';
 
 class ExpiryHomePage extends StatefulWidget {
   const ExpiryHomePage({Key? key}) : super(key: key);
+  static const routeName = '/expiry';
 
   @override
   State<ExpiryHomePage> createState() => _Expiry_HomePageState();
@@ -22,7 +24,6 @@ class _Expiry_HomePageState extends State<ExpiryHomePage> {
   DateTime? food_expired_date;
 
   // Main function check : GET/Fetch work?
-  // Alternative : fetch using http
   Future<List<FoodData>> fetchFoodData(CookieRequest request) async {
     var response =
         await request.get("https://fooodybuddy.up.railway.app/expiry/json/");
@@ -43,7 +44,10 @@ class _Expiry_HomePageState extends State<ExpiryHomePage> {
     final request = context.watch<CookieRequest>();
     return Scaffold(
         appBar: AppBar(
-          title: const Text("Expiry Home Page"),
+          title: const Text(
+            "Expiry Home Page",
+            style: TextStyle(fontFamily: 'Poppins'),
+          ),
         ),
         drawer: const AppDrawer(),
         body: request.loggedIn
@@ -53,17 +57,15 @@ class _Expiry_HomePageState extends State<ExpiryHomePage> {
                   if (snapshot.data == null) {
                     return const Center(child: CircularProgressIndicator());
                   } else {
-                    if (!snapshot.hasData) {
-                      return Column(
-                        children: const [
-                          Text(
-                            "Tidak ada food list :(",
-                            style: TextStyle(
-                                color: Color(0xff59A5D8), fontSize: 20),
-                          ),
-                          SizedBox(height: 8),
-                        ],
-                      );
+                    if (listEquals(snapshot.data, [])) {
+                      return const Center(
+                          child: Text(
+                        "You haven't add any food to your tracker :(",
+                        style: TextStyle(
+                            color: Color(0xFFFEA150),
+                            fontSize: 40,
+                            fontFamily: 'Poppins'),
+                      ));
                     } else {
                       return ListView.builder(
                           itemCount: snapshot.data!.length,
@@ -90,9 +92,11 @@ class _Expiry_HomePageState extends State<ExpiryHomePage> {
                                         child: Align(
                                           alignment: Alignment.centerLeft,
                                           child: Text(
-                                            snapshot
-                                                .data![index].fields.food_name,
-                                            style: const TextStyle(fontSize: 30),
+                                            snapshot.data![index].food_name,
+                                            style: const TextStyle(
+                                                fontSize: 30,
+                                                fontWeight: FontWeight.bold,
+                                                fontFamily: 'Poppins'),
                                           ),
                                         ),
                                       ),
@@ -102,9 +106,11 @@ class _Expiry_HomePageState extends State<ExpiryHomePage> {
                                         child: Align(
                                           alignment: Alignment.centerLeft,
                                           child: Text(
-                                            snapshot.data![index].fields
-                                                .food_expired_date,
-                                            style: const TextStyle(fontSize: 15),
+                                            snapshot
+                                                .data![index].food_expired_date,
+                                            style: const TextStyle(
+                                                fontSize: 15,
+                                                fontFamily: 'Poppins'),
                                           ),
                                         ),
                                       ),
@@ -116,11 +122,13 @@ class _Expiry_HomePageState extends State<ExpiryHomePage> {
                   }
                 }))
             : (Center(
-                // Main function check : Switched to login page?
                 child: TextButton(
                   child: const Text(
                     "Proceed to login first..",
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 40,
+                        fontFamily: 'Poppins'),
                   ),
                   style: ButtonStyle(
                     backgroundColor:
@@ -146,7 +154,7 @@ class _Expiry_HomePageState extends State<ExpiryHomePage> {
                 FloatingActionButton(
                   backgroundColor: const Color(0xFFFEA150),
                   onPressed: () {
-                    Navigator.push(
+                    Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
                           builder: (context) => const ExpiryAddPage()),
@@ -171,34 +179,54 @@ class _Expiry_HomePageState extends State<ExpiryHomePage> {
                                     style: TextStyle(
                                         fontSize: 40,
                                         fontWeight: FontWeight.bold,
-                                        fontStyle: FontStyle.italic),
+                                        fontStyle: FontStyle.italic,
+                                        fontFamily: 'Poppins'),
                                   ),
                                   Text(
-                                    "These are the examples if your food doesn't have an expiration date",
+                                    "Your food note will be sorted from the newest, so it'll be easier for you to track your note.",
                                     style: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                    ),
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                        fontFamily: 'Poppins'),
+                                  ),
+                                  Text(
+                                    "Anyway, these are the examples if your food doesn't have an expiration date",
+                                    style: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                        fontFamily: 'Poppins'),
+                                  ),
+                                  Text(
+                                    "==================================================================",
+                                    style: TextStyle(
+                                        fontSize: 17,
+                                        fontWeight: FontWeight.bold,
+                                        fontFamily: 'Poppins'),
                                   ),
                                   Text(
                                     "3 years - Canned food and peanut butter",
-                                    style: TextStyle(fontSize: 15),
+                                    style: TextStyle(
+                                        fontSize: 15, fontFamily: 'Poppins'),
                                   ),
                                   Text(
                                     "1 year - Sauces, condiments, dry foods, baking items, cereals, and snacks",
-                                    style: TextStyle(fontSize: 15),
+                                    style: TextStyle(
+                                        fontSize: 15, fontFamily: 'Poppins'),
                                   ),
                                   Text(
                                     "6 months - Drinks, snacks, and chocolate candy",
-                                    style: TextStyle(fontSize: 15),
+                                    style: TextStyle(
+                                        fontSize: 15, fontFamily: 'Poppins'),
                                   ),
                                   Text(
                                     "3 months - Cookies, mayonnaise, and tortillas",
-                                    style: TextStyle(fontSize: 15),
+                                    style: TextStyle(
+                                        fontSize: 15, fontFamily: 'Poppins'),
                                   ),
                                   Text(
                                     "Others - Use expiration date",
-                                    style: TextStyle(fontSize: 15),
+                                    style: TextStyle(
+                                        fontSize: 15, fontFamily: 'Poppins'),
                                   ),
                                 ],
                               ),

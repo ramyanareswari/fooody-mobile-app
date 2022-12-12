@@ -2,7 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:fooody/widgets/drawer.dart';
+import 'package:expiry/screens/expiry_home_page.dart';
 import 'dart:convert' as convert;
+import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 import 'package:fooody/common/cookie_request.dart';
 
@@ -16,7 +18,7 @@ class ExpiryAddPage extends StatefulWidget {
 class _Expiry_AddPage extends State<ExpiryAddPage> {
   final _formKey = GlobalKey<FormState>();
   String food_name = "";
-  DateTime? food_expired_date;
+  DateTime food_expired_date = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +26,10 @@ class _Expiry_AddPage extends State<ExpiryAddPage> {
     final request = context.watch<CookieRequest>();
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Expiry Add Page"),
+        title: const Text(
+          "Expiry Add Page",
+          style: TextStyle(fontFamily: 'Poppins'),
+        ),
       ),
       drawer: const AppDrawer(),
       body: Form(
@@ -41,6 +46,8 @@ class _Expiry_AddPage extends State<ExpiryAddPage> {
                     decoration: InputDecoration(
                       hintText: "Example: Mi Yamin Fasilkom",
                       labelText: "Food Name",
+                      hintStyle: const TextStyle(fontFamily: 'Poppins'),
+                      labelStyle: const TextStyle(fontFamily: 'Poppins'),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(5.0),
                       ),
@@ -67,11 +74,11 @@ class _Expiry_AddPage extends State<ExpiryAddPage> {
                   ),
                 ),
                 Padding(
-                  // Menggunakan padding sebesar 8 pixels
                   padding: const EdgeInsets.all(8.0),
                   child: TextButton(
                     // Appearing food_expired_date?
-                    child: const Text("Food Expired Date"),
+                    child: const Text("Food Expired Date. Default : Today",
+                        style: TextStyle(fontFamily: 'Poppins')),
                     onPressed: () {
                       showDatePicker(
                         context: context,
@@ -80,7 +87,7 @@ class _Expiry_AddPage extends State<ExpiryAddPage> {
                         lastDate: DateTime(2200),
                       ).then((date) {
                         setState(() {
-                          food_expired_date = date;
+                          food_expired_date = date!;
                         });
                       });
                     },
@@ -97,32 +104,44 @@ class _Expiry_AddPage extends State<ExpiryAddPage> {
                                 const Color(0xFFFEA150)),
                           ),
                           onPressed: () async {
-                            if (_formKey.currentState!.validate() &&
-                                food_expired_date != null) {
+                            if (_formKey.currentState!.validate()) {
                               // Main function check : POST work?
+                              // ignore: unused_local_variable
                               final response = await request.post(
-                                  "https://fooodybuddy.up.railway.app/expiry/add-food/",
+                                  "https://fooodybuddy.up.railway.app/expiry/add-food-flutter/",
                                   {
                                     "food_name": food_name,
                                     "food_expired_date":
-                                        food_expired_date.toString(),
+                                        "${food_expired_date.year}-${food_expired_date.month}-${food_expired_date.day}",
                                   });
 
-                              // Alternative : post using http
-                              if (response.status == 200) {
-                                // Hopefully works, status based on Django code (?)
-                                ScaffoldMessenger.of(context)
-                                    .showSnackBar(const SnackBar(
-                                  content:
-                                      Text("Food tracker creation is success!"),
-                                ));
-                                Navigator.pop(context);
-                              }
+                              // Use status from response to indicate the program succession status
+                              response['status'] == 'success'
+                                  ? ScaffoldMessenger.of(context)
+                                      .showSnackBar(const SnackBar(
+                                      content: Text("Successfully added!",
+                                          style:
+                                              TextStyle(fontFamily: 'Poppins')),
+                                    ))
+                                  : ScaffoldMessenger.of(context)
+                                      .showSnackBar(const SnackBar(
+                                      content: Text("Adding food failed!",
+                                          style:
+                                              TextStyle(fontFamily: 'Poppins')),
+                                    ));
+
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const ExpiryHomePage()),
+                              );
                             }
                           },
                           child: const Text(
                             "Submit",
-                            style: TextStyle(color: Colors.white),
+                            style: TextStyle(
+                                color: Colors.white, fontFamily: 'Poppins'),
                           ),
                         ),
                       ),
@@ -138,11 +157,16 @@ class _Expiry_AddPage extends State<ExpiryAddPage> {
                                 const Color(0xFFFEA150)),
                           ),
                           onPressed: () {
-                            Navigator.pop(context);
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const ExpiryHomePage()),
+                            );
                           },
                           child: const Text(
                             "Back",
-                            style: TextStyle(color: Colors.white),
+                            style: TextStyle(
+                                color: Colors.white, fontFamily: 'Poppins'),
                           ),
                         ),
                       ),

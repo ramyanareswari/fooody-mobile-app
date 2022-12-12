@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:tips/models/tips_model.dart';
+import 'package:fooody/common/cookie_request.dart';
 
 
 Future<List<MyArticle>> fetchWatchList() async {
@@ -14,6 +15,7 @@ Future<List<MyArticle>> fetchWatchList() async {
     headers: {
       "Access-Control-Allow-Origin": "*",
       "Content-Type": "application/json",
+      'Accept': '*/*'
     },
   );
 

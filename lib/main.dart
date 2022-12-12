@@ -3,9 +3,11 @@
 import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
-import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:fooody/common/cookie_request.dart';
 
 import 'package:fooody/screens/homepage.dart';
+import 'package:fooody/screens/login.dart';
+import 'package:fooody/screens/signup.dart';
 
 void main() {
   runApp(const MyApp());
@@ -43,6 +45,12 @@ class MyApp extends StatelessWidget {
             switch (settings.name) {
               case HomePage.routeName:
                 return MaterialPageRoute(builder: (_) => const HomePage());
+          
+              case SignUp.routeName:
+                return MaterialPageRoute(builder: (_) => const SignUp());
+              
+              case LoginScreen.routeName:
+                return MaterialPageRoute(builder: (_) => const LoginScreen());
             }
             return null;
           }),

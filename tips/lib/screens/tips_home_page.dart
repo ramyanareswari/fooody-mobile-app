@@ -104,8 +104,9 @@ class _Tips_HomePageState extends State<TipsHomePage> {
       }),
 
       floatingActionButton: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          //if (request.loggedIn) ...[
+          if (request.loggedIn) ...[
             FloatingActionButton(
               backgroundColor: const Color(0xFFFEA150),
               onPressed: () {
@@ -119,17 +120,21 @@ class _Tips_HomePageState extends State<TipsHomePage> {
               child: const Icon(Icons.add),
             ),
           ],
-        //],
+        ],
       ),
     );
   }
 
   Widget _buildListView() {
+    final request = context.watch<CookieRequest>();
     return ListView(
+      
       physics: const ClampingScrollPhysics(),
       children: [
-        const CardBannerNotLoggedIn(),
+        if (request.loggedIn) ...[
         const CardBannerLoggedIn(),
+        ],
+        const CardBannerNotLoggedIn(),
         ListView.builder(
             physics: const ClampingScrollPhysics(),
             shrinkWrap: true,

@@ -1,4 +1,8 @@
+// ignore_for_file: library_private_types_in_public_api, prefer_interpolation_to_compose_strings, use_build_context_synchronously, sort_child_properties_last, depend_on_referenced_packages
+
 import 'dart:convert';
+import 'package:fooody/widgets/drawer.dart';
+import 'package:miniquiz/screens/asessment_page.dart';
 import 'package:miniquiz/screens/quiz_question_page.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -16,7 +20,7 @@ class _MainPageState extends State<MainPage> {
   Color getColorFromHex(String hexColor) {
     hexColor = hexColor.replaceAll("#", "");
     if (hexColor.length == 6) {
-      hexColor = "FF" + hexColor;
+      hexColor = "FF$hexColor";
       return Color(int.parse("0x$hexColor"));
     } else {
       return Color(int.parse("0x$hexColor"));
@@ -25,7 +29,7 @@ class _MainPageState extends State<MainPage> {
 
   Future<List<dynamic>> fetchAssessment() async {
     var url = Uri.parse(
-        'https://temenin-isoman.herokuapp.com/deteksimandiri/get-assessments/');
+        'https://fooodybuddy.up.railway.app/mini-quiz/get-quiz-model/');
 
     final response = await http.get(url);
     var data = jsonDecode(response.body);
@@ -40,7 +44,7 @@ class _MainPageState extends State<MainPage> {
           height: 32,
         ),
         Text(
-          "Assessment List",
+          "Go break a leg!",
           style: TextStyle(
             fontSize: 22,
             fontWeight: FontWeight.bold,
@@ -75,8 +79,7 @@ class _MainPageState extends State<MainPage> {
         return () async {
           await http.post(
               Uri.parse(
-                  'https://temenin-isoman.herokuapp.com/deteksimandiri/delete-assessments/' +
-                      pk.toString()),
+                  'https://fooodybuddy.up.railway.app/mini-quiz/get-quiz-model/$pk'),
               headers: <String, String>{
                 'Content-Type': 'application/json;charset=UTF-8',
               },
@@ -162,7 +165,6 @@ class _MainPageState extends State<MainPage> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
                       FutureBuilder(
-                        future: futureUser,
                         builder: (context, snapshot) {
                           if (snapshot.hasData) {
                             return ElevatedButton(
@@ -213,109 +215,38 @@ class _MainPageState extends State<MainPage> {
                         },
                       ),
                       FutureBuilder(
-                        future: futureUser,
                         builder: (context, snapshot) {
-                          if (snapshot.hasData &&
-                              ((snapshot.data as User)
-                                      .roles
-                                      .contains("fasilitas_kesehatan") ||
-                                  (snapshot.data as User)
-                                      .roles
-                                      .contains("admin"))) {
-                            return Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: <Widget>[
-                                  OutlinedButton(
-                                    onPressed: () async {
-                                      final response = await http.get(
-                                        Uri.parse(
-                                            'https://temenin-isoman.herokuapp.com/deteksimandiri/get-assessment/' +
-                                                data[index]["pk"].toString()),
-                                      );
-
-                                      List d = jsonDecode(response.body);
-
-                                      Navigator.of(context).push(
-                                        MaterialPageRoute(
-                                            builder: (context) => EditAssessment(
-                                                "Edit Assessment",
-                                                data[index]["pk"],
-                                                d[0]["name"],
-                                                d[0]["topic"],
-                                                d[0]["nomber_of_question"],
-                                                d[0][
-                                                    "required_score_to_pass"])),
-                                      );
-                                    },
-                                    style: const ButtonStyle(
-                                      visualDensity: VisualDensity(
-                                          vertical: -3, horizontal: -4),
-                                    ),
-                                    child: const Text(
-                                      'Edit',
-                                      style: TextStyle(
-                                        color: Colors.green,
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.bold,
-                                      ),
+                          return Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                OutlinedButton(
+                                  onPressed: () {
+                                    Navigator.of(context).push(
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              QuestionPage(data[index]["pk"])),
+                                    );
+                                  },
+                                  style: const ButtonStyle(
+                                    visualDensity: VisualDensity(
+                                        vertical: -3, horizontal: -4),
+                                  ),
+                                  child: const Text(
+                                    'Show Questions',
+                                    style: TextStyle(
+                                      color: Colors.blue,
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.bold,
                                     ),
                                   ),
-                                  const SizedBox(
-                                    width: 10.0,
-                                  ),
-                                  OutlinedButton(
-                                    onPressed: () {
-                                      Navigator.of(context).push(
-                                        MaterialPageRoute(
-                                            builder: (context) => QuestionView(
-                                                data[index]["pk"])),
-                                      );
-                                    },
-                                    style: const ButtonStyle(
-                                      visualDensity: VisualDensity(
-                                          vertical: -3, horizontal: -4),
-                                    ),
-                                    child: const Text(
-                                      'Show Questions',
-                                      style: TextStyle(
-                                        color: Colors.blue,
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    width: 10.0,
-                                  ),
-                                  OutlinedButton(
-                                    onPressed: () {
-                                      showAlertDialog(
-                                          context,
-                                          data[index]['fields']["name"],
-                                          data[index]["pk"],
-                                          "delete_assessment");
-                                    },
-                                    style: const ButtonStyle(
-                                      visualDensity: VisualDensity(
-                                          vertical: -3, horizontal: -4),
-                                    ),
-                                    child: const Text(
-                                      'Delete',
-                                      style: TextStyle(
-                                        color: Colors.red,
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            );
-                          }
-                          return const SizedBox(
-                            height: 15,
+                                ),
+                                const SizedBox(
+                                  width: 10.0,
+                                ),
+                              ],
+                            ),
                           );
                         },
                       ),
@@ -362,7 +293,7 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Deteksi Mandiri',
+        title: const Text('Food Waste Awareness Mini Quiz',
             style: TextStyle(
               fontWeight: FontWeight.bold,
               fontStyle: FontStyle.normal,
@@ -371,7 +302,7 @@ class _MainPageState extends State<MainPage> {
         centerTitle: true,
         backgroundColor: Colors.pink,
       ),
-      drawer: customDrawer(context, futureUser),
+      drawer: const AppDrawer(),
       body: SingleChildScrollView(
         physics: const ScrollPhysics(),
         child: Column(
@@ -381,7 +312,6 @@ class _MainPageState extends State<MainPage> {
           ],
         ),
       ),
-      floatingActionButton: _buildFloatingButton(),
       backgroundColor: Colors.grey.shade200,
     );
   }

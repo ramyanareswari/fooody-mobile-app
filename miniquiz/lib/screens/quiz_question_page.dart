@@ -1,6 +1,9 @@
+// ignore_for_file: depend_on_referenced_packages, unused_local_variable, library_private_types_in_public_api
+
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:fooody/widgets/drawer.dart';
 import 'package:http/http.dart' as http;
 
 // ignore: must_be_immutable
@@ -17,7 +20,7 @@ class _QuestionPageState extends State<QuestionPage> {
   Color getColorFromHex(String hexColor) {
     hexColor = hexColor.replaceAll("#", "");
     if (hexColor.length == 6) {
-      hexColor = "FF" + hexColor;
+      hexColor = "FF$hexColor";
       return Color(int.parse("0x$hexColor"));
     } else {
       return Color(int.parse("0x$hexColor"));
@@ -26,8 +29,7 @@ class _QuestionPageState extends State<QuestionPage> {
 
   Future<List<dynamic>> fetchQuestion(int pk) async {
     var url = Uri.parse(
-        'https://temenin-isoman.herokuapp.com/deteksimandiri/get-assessments/' +
-            widget.pk.toString());
+        'https://fooodybuddy.up.railway.app/mini-quiz/get-quiz-model/${widget.pk}');
 
     final response = await http.get(url);
     var data = jsonDecode(response.body);
@@ -53,57 +55,6 @@ class _QuestionPageState extends State<QuestionPage> {
           height: 20,
         ),
       ],
-    );
-  }
-
-  showAlertDialog(BuildContext context, String data, int pk) {
-    Widget cancelButton = TextButton(
-      child: const Text(
-        "No",
-        style: TextStyle(color: Colors.pink),
-      ),
-      onPressed: () {
-        Navigator.of(context).pop();
-      },
-    );
-
-    Widget continueButton = TextButton(
-      child: const Text(
-        "Yes",
-        style: TextStyle(color: Colors.pink),
-      ),
-      onPressed: () async {
-        await http.post(
-            Uri.parse(
-                'https://temenin-isoman.herokuapp.com/deteksimandiri/delete-question/' +
-                    pk.toString()),
-            headers: <String, String>{
-              'Content-Type': 'application/json;charset=UTF-8',
-            },
-            body: jsonEncode(<String, List>{
-              "pk": [pk]
-            }));
-        Navigator.of(context).pop();
-        setState(() {
-          _buildContent();
-        });
-      },
-    );
-
-    AlertDialog alert = AlertDialog(
-      title: const Text("WARNING"),
-      content: Text("Are you sure want to delete " + data),
-      actions: [
-        cancelButton,
-        continueButton,
-      ],
-    );
-
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return alert;
-      },
     );
   }
 
@@ -141,18 +92,7 @@ class _QuestionPageState extends State<QuestionPage> {
                                 onPressed: () async {
                                   final response = await http.get(
                                     Uri.parse(
-                                        'https://temenin-isoman.herokuapp.com/deteksimandiri/get-assessments/' +
-                                            widget.pk.toString() +
-                                            '/' +
-                                            data[index]["pk"].toString()),
-                                  );
-
-                                  List d = jsonDecode(response.body);
-
-                                  Navigator.of(context).push(
-                                    MaterialPageRoute(
-                                        builder: (context) => EditOption(
-                                            widget.pk, data[index]["pk"], d)),
+                                        'https://fooodybuddy.up.railway.app/mini-quiz/get-quiz-model/${widget.pk}/${data[index]["pk"]}'),
                                   );
                                 },
                                 style: const ButtonStyle(
@@ -160,7 +100,7 @@ class _QuestionPageState extends State<QuestionPage> {
                                       vertical: -3, horizontal: -4),
                                 ),
                                 child: const Text(
-                                  'Edit',
+                                  'Button sesuatu',
                                   style: TextStyle(
                                     color: Colors.green,
                                     fontSize: 12,
@@ -170,26 +110,6 @@ class _QuestionPageState extends State<QuestionPage> {
                               ),
                               const SizedBox(
                                 width: 10.0,
-                              ),
-                              OutlinedButton(
-                                onPressed: () {
-                                  showAlertDialog(
-                                      context,
-                                      data[index]['question'],
-                                      data[index]["pk"]);
-                                },
-                                style: const ButtonStyle(
-                                  visualDensity: VisualDensity(
-                                      vertical: -3, horizontal: -4),
-                                ),
-                                child: const Text(
-                                  'Delete',
-                                  style: TextStyle(
-                                    color: Colors.red,
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
                               ),
                             ],
                           ),
@@ -237,6 +157,7 @@ class _QuestionPageState extends State<QuestionPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: const AppDrawer(),
       appBar: AppBar(
         title: const Text('Food Waste Awareness Mini Quiz',
             style: TextStyle(

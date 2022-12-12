@@ -115,11 +115,21 @@ class _Expiry_AddPage extends State<ExpiryAddPage> {
                                         "${food_expired_date.year}-${food_expired_date.month}-${food_expired_date.day}",
                                   });
 
-                              ScaffoldMessenger.of(context)
-                                  .showSnackBar(const SnackBar(
-                                content: Text("Successfully added!",
-                                    style: TextStyle(fontFamily: 'Poppins')),
-                              ));
+                              // Use status from response to indicate the program succession status
+                              response['status'] == 'success'
+                                  ? ScaffoldMessenger.of(context)
+                                      .showSnackBar(const SnackBar(
+                                      content: Text("Successfully added!",
+                                          style:
+                                              TextStyle(fontFamily: 'Poppins')),
+                                    ))
+                                  : ScaffoldMessenger.of(context)
+                                      .showSnackBar(const SnackBar(
+                                      content: Text("Adding food failed!",
+                                          style:
+                                              TextStyle(fontFamily: 'Poppins')),
+                                    ));
+
                               Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(

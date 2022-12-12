@@ -153,3 +153,4 @@ class _AddArticlePage extends State<AddArticlePage> {
     );
   }
 }
+

@@ -1,8 +1,11 @@
+// ignore_for_file: unused_import, depend_on_referenced_packages, duplicate_ignore, camel_case_types
+
 import 'package:flutter/material.dart';
 import 'package:fooody/screens/login.dart';
 import 'package:fooody/common/cookie_request.dart';
 import 'package:fooody/widgets/drawer.dart';
 import 'package:miniquiz/screens/quiz_question_page.dart';
+// ignore: unused_import
 import 'package:miniquiz/screens/quiz_result_page.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;

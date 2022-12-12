@@ -1,4 +1,4 @@
-// ignore_for_file: non_constant_identifier_names
+// ignore_for_file: non_constant_identifier_names, depend_on_referenced_packages, library_private_types_in_public_api, use_build_context_synchronously, sort_child_properties_last
 
 import 'dart:convert';
 import 'package:miniquiz/screens/quiz_result_page.dart';
@@ -19,10 +19,10 @@ class AssessmentPage extends StatefulWidget {
 class _AssessmentPageState extends State<AssessmentPage> {
   var user_answer = [];
 
+  // ngefetch pertanyaan
   Future<List<dynamic>> fetchQuestion(int pk) async {
     var url = Uri.parse(
-        'https://temenin-isoman.herokuapp.com/deteksimandiri/get-assessments/' +
-            pk.toString());
+        'https://fooodybuddy.up.railway.app/mini-quiz/get-quiz-model/$pk');
 
     final response = await http.get(url);
 
@@ -32,12 +32,10 @@ class _AssessmentPageState extends State<AssessmentPage> {
     return data;
   }
 
+  // ngefetch opsi jawaban
   Future<List<dynamic>> fetchOption(int pk, int pkQue) async {
     var url = Uri.parse(
-        'https://temenin-isoman.herokuapp.com/deteksimandiri/get-assessments/' +
-            pk.toString() +
-            '/' +
-            pkQue.toString());
+        'https://fooodybuddy.up.railway.app/mini-quiz/get-quiz-model/$pk/$pkQue');
 
     final response = await http.get(url);
 
@@ -73,10 +71,10 @@ class _AssessmentPageState extends State<AssessmentPage> {
           children: [
             Text(
               name,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 22,
                 fontWeight: FontWeight.bold,
-                color: getColorFromHex("#344767"),
+                color: Colors.orange,
               ),
             ),
           ],
@@ -233,16 +231,11 @@ class _AssessmentPageState extends State<AssessmentPage> {
         if (validateData()) {
           final response = await http.post(
               Uri.parse(
-                  'https://temenin-isoman.herokuapp.com/deteksimandiri/get-assessments/' +
-                      pk.toString() +
-                      '/save'),
+                  'https://fooodybuddy.up.railway.app/mini-quiz/get-quiz-model/$pk/save'),
               headers: <String, String>{
                 'Content-Type': 'application/json;charset=UTF-8',
               },
-              body: jsonEncode(<String, List>{
-                "answers": user_answer,
-                "user": [res?.username]
-              }));
+              body: jsonEncode(<String, List>{"answers": user_answer}));
 
           var data = jsonDecode(response.body);
 
@@ -299,7 +292,7 @@ class _AssessmentPageState extends State<AssessmentPage> {
   Color getColorFromHex(String hexColor) {
     hexColor = hexColor.replaceAll("#", "");
     if (hexColor.length == 6) {
-      hexColor = "FF" + hexColor;
+      hexColor = "FF$hexColor";
       return Color(int.parse("0x$hexColor"));
     } else {
       return Color(int.parse("0x$hexColor"));
@@ -310,7 +303,7 @@ class _AssessmentPageState extends State<AssessmentPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Deteksi Mandiri',
+          title: const Text('Food Awareness Mini Quiz',
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontStyle: FontStyle.normal,

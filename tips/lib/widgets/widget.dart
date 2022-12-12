@@ -1,6 +1,12 @@
+// ignore_for_file: unused_import, depend_on_referenced_packages, unused_local_variable
+
 import 'package:flutter/material.dart';
 import 'package:tips/models/tips_model.dart';
 import 'package:tips/screens/detail_tips_page.dart';
+import 'package:fooody/common/cookie_request.dart';
+import 'dart:convert' as convert;
+import 'package:fooody/screens/login.dart';
+import 'package:provider/provider.dart';
 
 class ArticleItem extends StatelessWidget {
   const ArticleItem({
@@ -12,6 +18,7 @@ class ArticleItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final request = context.watch<CookieRequest>();
     return Card(
       margin: const EdgeInsets.fromLTRB(20, 10, 20, 5),
       child: Row(
@@ -53,6 +60,8 @@ class ArticleItem extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                   ),
                 ),
+
+                // ========= ini ketika dipencet akan mengarah ke 
                 Padding(
                   padding: const EdgeInsets.only(left: 15),
                   child: ElevatedButton(
@@ -91,7 +100,7 @@ class CardBannerLoggedIn extends StatelessWidget {
       child: const Padding(
         padding: EdgeInsets.all(30.0),
         child: Text(
-          "Kamu bisa menambahkan artikel di sini, Buddy. Konten yang akan kamu unggah dapat berupa tips pengelolaan sisa makanan, cara mengurangi food waste, atau hal lainnya yang berkaitan erat dengan food waste.",
+          "Halo, Buddy! Kamu bisa menambahkan artikel di sini. Konten yang akan kamu unggah dapat berupa tips pengelolaan sisa makanan, cara mengurangi food waste, atau hal lainnya yang berkaitan erat dengan food waste.",
           style: TextStyle(
             fontFamily: "Poppins",
             fontSize: 14,

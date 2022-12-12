@@ -1,8 +1,13 @@
-// ignore_for_file: non_constant_identifier_names
+// ignore_for_file: non_constant_identifier_names, use_build_context_synchronously, unused_import, depend_on_referenced_packages, unused_local_variable
 
 import 'package:flutter/material.dart';
 import 'package:fooody/widgets/drawer.dart';
+import 'package:tips/screens/tips_home_page.dart';
 
+import 'dart:convert' as convert;
+import 'package:http/http.dart' as http;
+import 'package:provider/provider.dart';
+import 'package:fooody/common/cookie_request.dart';
 
 class AddArticlePage extends StatefulWidget {
   const AddArticlePage({Key? key}) : super(key: key);
@@ -13,14 +18,16 @@ class AddArticlePage extends StatefulWidget {
 
 class _AddArticlePage extends State<AddArticlePage> {
   final _formKey = GlobalKey<FormState>();
-  String food_name = "";
-  DateTime? food_expired_date;
+  String typedtitle = "";
+  String typedcontent = "";
+  DateTime typedpublish = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
+    final request = context.watch<CookieRequest>();
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Expiry Add Page"),
+        title: const Text("Add Article Form"),
       ),
       drawer: const AppDrawer(),
       body: Form(
@@ -36,8 +43,7 @@ class _AddArticlePage extends State<AddArticlePage> {
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
                     decoration: InputDecoration(
-                      hintText: "Example: Mi Yamin Fasilkom",
-                      labelText: "Food Name",
+                      labelText: "Tips Article Title",
                       // Menambahkan circular border agar lebih rapi
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(5.0),
@@ -46,19 +52,51 @@ class _AddArticlePage extends State<AddArticlePage> {
                     // Menambahkan behavior saat nama diketik
                     onChanged: (String? value) {
                       setState(() {
-                        food_name = value!;
+                        typedtitle = value!;
                       });
                     },
                     // Menambahkan behavior saat data disimpan
                     onSaved: (String? value) {
                       setState(() {
-                        food_name = value!;
+                        typedtitle = value!;
                       });
                     },
                     // Validator sebagai validasi form
                     validator: (String? value) {
                       if (value == null || value.isEmpty) {
-                        return 'Food name can\'t be empty!';
+                        return 'Title cannot be empty';
+                      }
+                      return null;
+                    },
+                  ),
+                ),
+                Padding(
+                  // Menggunakan padding sebesar 8 pixels
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextFormField(
+                    decoration: InputDecoration(
+                      labelText: "Tips Article Content",
+                      // Menambahkan circular border agar lebih rapi
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(5.0),
+                      ),
+                    ),
+                    // Menambahkan behavior saat nama diketik
+                    onChanged: (String? value) {
+                      setState(() {
+                        typedcontent = value!;
+                      });
+                    },
+                    // Menambahkan behavior saat data disimpan
+                    onSaved: (String? value) {
+                      setState(() {
+                        typedcontent = value!;
+                      });
+                    },
+                    // Validator sebagai validasi form
+                    validator: (String? value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Content cannot be empty!';
                       }
                       return null;
                     },
@@ -68,7 +106,7 @@ class _AddArticlePage extends State<AddArticlePage> {
                   // Menggunakan padding sebesar 8 pixels
                   padding: const EdgeInsets.all(8.0),
                   child: TextButton(
-                    child: const Text("Food Expired Date"),
+                    child: const Text("Select article's published date"),
                     onPressed: () {
                       showDatePicker(
                         context: context,
@@ -77,7 +115,7 @@ class _AddArticlePage extends State<AddArticlePage> {
                         lastDate: DateTime(2200),
                       ).then((date) {
                         setState(() {
-                          food_expired_date = date;
+                          typedpublish = date!;
                         });
                       });
                     },
@@ -93,42 +131,34 @@ class _AddArticlePage extends State<AddArticlePage> {
                             backgroundColor: MaterialStateProperty.all(
                                 const Color(0xFFFEA150)),
                           ),
-                          onPressed: () {
-                            if (_formKey.currentState!.validate() &&
-                                food_expired_date != null) {
-
-                              setState(() {
-                                food_name = "";
-                                food_expired_date = null;
-                              });
-
-                              Navigator.pop(context);
-                            }
-                          },
                           child: const Text(
                             "Submit",
                             style: TextStyle(color: Colors.white),
                           ),
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 100,
-                        child: Text(""),
-                      ),
-                      SizedBox(
-                        width: 125,
-                        child: TextButton(
-                          style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all(
-                                const Color(0xFFFEA150)),
-                          ),
-                          onPressed: () {
-                            Navigator.pop(context);
+                          onPressed: () async {
+                            if (_formKey.currentState!.validate()) {
+                              final response = await request.post(
+                                  "https://fooodybuddy.up.railway.app/tips/flutter/add-article-flutter/",
+                                  {
+                                    'title': typedtitle,
+                                    'content': typedcontent,
+                                    'publish': typedpublish,
+                                  });
+
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(const SnackBar(
+                                content: Text("Successfully added an article!",
+                                    style: TextStyle(fontFamily: 'Poppins')),
+                              ));
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const AddArticlePage()),
+                              );
+                            }
                           },
-                          child: const Text(
-                            "Back",
-                            style: TextStyle(color: Colors.white),
-                          ),
+                    
                         ),
                       ),
                     ],

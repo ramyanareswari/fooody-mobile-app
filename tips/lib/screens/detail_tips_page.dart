@@ -54,11 +54,7 @@ class _DetailTipsPageState extends State<DetailTipsPage> {
           ),
           ListTile(
             contentPadding: EdgeInsets.symmetric(horizontal: 25),
-            // title: Text(
-            //   "Dibuat oleh Author 1",
-            //   style:
-            //       TextStyle(fontFamily: "Poppins", fontWeight: FontWeight.w600),
-            // ),
+
             subtitle: Text(
               DateFormat("dd MMM yyyy")
                   .format(widget.model.fields.publish)

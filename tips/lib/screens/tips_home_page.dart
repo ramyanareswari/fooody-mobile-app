@@ -131,10 +131,10 @@ class _Tips_HomePageState extends State<TipsHomePage> {
       
       physics: const ClampingScrollPhysics(),
       children: [
-        if (request.loggedIn) ...[
-        const CardBannerLoggedIn(),
-        ],
-        const CardBannerNotLoggedIn(),
+        request.loggedIn?
+        const CardBannerLoggedIn()
+        : const CardBannerNotLoggedIn(),
+
         ListView.builder(
             physics: const ClampingScrollPhysics(),
             shrinkWrap: true,
@@ -148,4 +148,5 @@ class _Tips_HomePageState extends State<TipsHomePage> {
     );
   }
 }
+
 

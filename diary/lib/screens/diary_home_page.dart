@@ -1,4 +1,4 @@
-// ignore_for_file: camel_case_types
+// ignore_for_file: camel_case_types, unused_import, depend_on_referenced_packages
 
 import 'package:diary/screens/diary_form.dart';
 import 'package:flutter/material.dart';
@@ -15,74 +15,6 @@ class DiaryHomePage extends StatefulWidget {
 
   @override
   State<DiaryHomePage> createState() => _Diary_HomePageState();
-}
-
-class Bar extends StatelessWidget {
-  const Bar({Key? key}) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-        padding:
-            const EdgeInsets.only(top: 10, left: 15, right: 15, bottom: 10),
-        child: Container(
-          padding:
-              const EdgeInsets.only(top: 20, left: 20, right: 20, bottom: 10),
-          height: 130,
-          width: double.infinity,
-          // decoration: const BoxDecoration(
-          //   borderRadius: BorderRadius.only(
-          //     bottomLeft: Radius.circular(20),
-          //     bottomRight: Radius.circular(20),
-          //     topLeft: Radius.circular(20),
-          //     topRight: Radius.circular(20),
-          //   ),
-          //   gradient: LinearGradient(
-          //     begin: Alignment.topLeft,
-          //     end: Alignment.bottomRight,
-          //     stops: [0.1, 0.5],
-          //     colors: [
-          //       Color(0xff886ff2),
-          //       Color(0xff6849ef),
-          //     ],
-          //   ),
-          // ),
-          child: Column(
-            children: [
-              // Row(
-              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //   crossAxisAlignment: CrossAxisAlignment.start,
-              //   children: [
-              //     Column(
-              //       crossAxisAlignment: CrossAxisAlignment.start,
-              //       children: <Widget>[
-              //         Text(
-              //           'Hello, \nUser',
-              //           style: TextStyle(
-              //               fontWeight: FontWeight.w600,
-              //               fontSize: 24,
-              //               color: Colors.white),
-              //         ),
-              //         SizedBox(height: 10),
-              //         Text(
-              //           'Welcome to ACB-ISBE 2022',
-              //           style: TextStyle(
-              //               fontWeight: FontWeight.w400,
-              //               fontSize: 12,
-              //               color: Colors.white),
-              //         )
-              //       ],
-              //     ),
-                  
-              //   ],
-              // ),
-              ClipRRect(
-                    borderRadius: BorderRadius.circular(10.0),
-                    child: Image.asset('images/plate.png', scale: 1.8),
-                  )
-            ],
-          ),
-        ));
-  }
 }
 
 class _Diary_HomePageState extends State<DiaryHomePage> {
@@ -105,6 +37,7 @@ class _Diary_HomePageState extends State<DiaryHomePage> {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.white,
+          // ignore: prefer_const_constructors
           shape: Border(bottom: BorderSide(color: Colors.black, width: 0.5)),
           title: const Text(
             "Food Diary",
@@ -114,9 +47,7 @@ class _Diary_HomePageState extends State<DiaryHomePage> {
         ),
         drawer: const AppDrawer(),
         body:
-            // Column(
-            //   children: [
-                // Bar(),
+
                 FutureBuilder(
                     future: fetchDiary(request),
                     builder: (context, AsyncSnapshot snapshot) {
@@ -198,8 +129,7 @@ class _Diary_HomePageState extends State<DiaryHomePage> {
                       }
                     },
         ),
-              // ],
-          // ),  
+
         floatingActionButton: Padding(
             padding: const EdgeInsets.only(left: 35),
             child: Row(

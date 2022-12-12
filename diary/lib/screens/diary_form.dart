@@ -1,8 +1,9 @@
+// ignore_for_file: unused_import, depend_on_referenced_packages, prefer_const_constructors, prefer_const_constructors, duplicate_ignore, avoid_print, unused_local_variable, use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:diary/screens/diary_home_page.dart';
 import 'package:fooody/widgets/drawer.dart';
 import 'package:intl/intl.dart';
-import 'dart:convert' as convert;
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 import 'package:fooody/common/cookie_request.dart';
@@ -41,6 +42,7 @@ class _DiaryFormState extends State<DiaryForm> {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.white,
+          // ignore: prefer_const_constructors
           shape: Border(bottom: BorderSide(color: Colors.black, width: 0.5)),
           title: const Text(
             "add log",
@@ -68,7 +70,6 @@ class _DiaryFormState extends State<DiaryForm> {
                               fontSize: 55,
                               fontWeight: FontWeight.bold,
                               decoration: TextDecoration.underline)),
-                      
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: TextFormField(
@@ -133,9 +134,9 @@ class _DiaryFormState extends State<DiaryForm> {
                                 String formattedDate =
                                     DateFormat.yMd().format(selectedDate);
                                 setState(() {
-                                  dateInput.text = formattedDate!;
-                                  logDate = formattedDate!;
-                                  date = selectedDate!;
+                                  dateInput.text = formattedDate;
+                                  logDate = formattedDate;
+                                  date = selectedDate;
                                 });
                               } else {
                                 print('Tanggal belum dipilih');
@@ -285,25 +286,26 @@ class _DiaryFormState extends State<DiaryForm> {
                                     height: 50,
                                     child: OutlinedButton(
                                       style: ButtonStyle(
-                                        side:
-                                            MaterialStateProperty.all(
-                                          BorderSide(
-                        color: Color.fromARGB(255, 255, 139, 55),
-                        width: 1,)
-                                        ),
+                                        side: MaterialStateProperty.all(
+                                            BorderSide(
+                                          color:
+                                              Color.fromARGB(255, 255, 139, 55),
+                                          width: 1,
+                                        )),
                                       ),
                                       onPressed: () async {
                                         Navigator.pushReplacement(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              const DiaryHomePage()),
-                                    );
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const DiaryHomePage()),
+                                        );
                                       },
                                       child: const Text(
                                         "Back",
                                         style: TextStyle(
-                                            color: Color.fromARGB(255, 226, 108, 24),
+                                            color: Color.fromARGB(
+                                                255, 226, 108, 24),
                                             fontFamily: 'Poppins',
                                             fontSize: 20),
                                       ),

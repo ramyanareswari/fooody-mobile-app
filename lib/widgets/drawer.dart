@@ -86,11 +86,15 @@ class AppDrawer extends StatelessWidget {
                     fontFamily: 'Poppins',),),
             onTap: () {
               // Route menu ke halaman diary
+              request.loggedIn ?
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
                     builder: (context) => const DiaryHomePage()),
-              );
+              ) : Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const LoginScreen()));
             },
           ),
           ListTile(

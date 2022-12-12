@@ -255,7 +255,7 @@ class _AddFoodHomePageState extends State<AddFoodHomePage> {
                                         "name": name,
                                         "phone_number": phoneNumber,
                                         "address": address,
-                                        "expiry_date" : expiryDate,
+                                        "expiry_date" : DateFormat('yyyy-MM-dd').format(expiryDate),
                                         "food_type": foodType,
                                         "weight": weight.toString(),
                                       });
